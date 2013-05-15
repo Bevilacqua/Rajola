@@ -9,6 +9,8 @@ import org.newdawn.slick.util.BufferedImageUtil;
 
 public class Tools {
 
+	//All Tools should be referenced in a static manor
+	
 	public static Image toSlickImage(BufferedImage image) { //BufferedImage to SlickImage
 		Texture tex = null;
 		try {
