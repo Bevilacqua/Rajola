@@ -64,6 +64,10 @@ public class TileSpriteSheet {
 		}
 	}
 	
+	/*
+	 *Organize the sprite sheet into an array of Slick2D images that contain one tile each 
+	 *Must define tile size to use 
+	 */
 	private void organizeImages() {
 		if(tileSize <= 0 ) return;
 		
@@ -84,6 +88,9 @@ public class TileSpriteSheet {
 		}
 	}
 	
+	/**
+	 * @return List of images containing individual tiles
+	 */
 	public List<Image> getTiles() {
 		if(this.tilesImages !=null) return this.tilesImages;
 		else throw new NullPointerException(); //This may be a little much...
