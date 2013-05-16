@@ -1,12 +1,15 @@
 package rajola.pipeline;
 
 import java.awt.image.BufferedImage;
+import java.awt.image.DataBufferInt;
 import java.io.IOException;
 import java.util.List;
 
 import javax.imageio.ImageIO;
 
 import org.newdawn.slick.Image;
+
+import rajola.pipeline.tools.ImageTools;
 
 public class TileSpriteSheet {
 	
@@ -16,6 +19,9 @@ public class TileSpriteSheet {
 
 	private int pixels[];
     private List<Image> tilesImages;
+    
+    private BufferedImage bImage;
+    private int[] bPixels;
 	
 	/**
 	 * @param path the path to the sprite sheet
@@ -61,10 +67,26 @@ public class TileSpriteSheet {
 	private void organizeImages() {
 		if(tileSize <= 0 ) return;
 		
-		for(int i = 0; i <= this.pixels.length ; i++) {
-			//TODO:run through pixels array and save pixels into new image use a BufferedImage and raster to write to then convert to slickImage
-			
+		//TODO: Test this because its confusing me :)
+		for(int y = 0 ; y < this.size ; y++) {
+			for(int x = 0 ; x < this.size ; x++) {
+				bImage = new BufferedImage(this.tileSize , this.tileSize , BufferedImage.TYPE_INT_RGB);
+				bPixels = ((DataBufferInt) bImage.getRaster().getDataBuffer()).getData();
+				for(int localY = 0 ; localY < this.tileSize ; localY++ ) {
+					for(int localX = 0 ; localX < this.tileSize ; localX++) {
+						bPixels[localX * localY] = pixels[(x + localX) * (y + localY)];
+						x++;
+					}
+					y++;
+				}
+				this.tilesImages.add(ImageTools.toSlickImage(bImage));
+			}
 		}
+	}
+	
+	public List<Image> getTiles() {
+		if(this.tilesImages !=null) return this.tilesImages;
+		else throw new NullPointerException(); //This may be a little much...
 	}
 	
 }
