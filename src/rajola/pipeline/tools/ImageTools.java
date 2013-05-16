@@ -11,8 +11,9 @@ public class ImageTools {
 
 	//All Tools should be referenced in a static manor
 	
-	/*
-	 * Takes a Buffered Image and outputs a SlickImage
+	/**
+	 * @param BufferedImage
+	 * @return Slick Image
 	 */
 	public static Image toSlickImage(BufferedImage image) {
 		Texture tex = null;

@@ -18,6 +18,14 @@ public class Sprite {
 		animationSpeed = 1000;
 	}
 	
+	/**
+	 * @param animationSpeed the animation speed in milliseconds
+	 */
+	public Sprite(int animationSpeed) {
+		frames = new ArrayList<Image>();
+		this.animationSpeed = animationSpeed;
+	}
+	
 	/*
 	 * Sets width and height in pixels
 	 * Sets animation speed in milliseconds
@@ -28,6 +36,7 @@ public class Sprite {
 		this.width = width;
 		this.animationSpeed = animationSpeed;
 	}
+	
 
 	/**
 	 * @return the height
