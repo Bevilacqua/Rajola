@@ -4,12 +4,27 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
 public class TileSpriteSheet {
-	
+
 	private String path;
 	private int tileSize;
     private Image[][] tileImages;
+    private Image fullImage;
 	
-	/**
+    /**
+     * @param path path to the image
+     * This constructor does not create array of tiles
+     */
+	public TileSpriteSheet(String path) {
+		this.path = path;
+		
+		try {
+			fullImage = new Image(path);
+		} catch(SlickException e) {
+			e.printStackTrace();
+		}
+	}
+    
+    /**
 	 * @param path the path to the sprite sheet
 	 * @param size the size of the sprite sheet, the sprite sheet must have an equal height and width
 	 */
@@ -84,4 +99,9 @@ public class TileSpriteSheet {
 	public String getPath() {
 		return this.path;
 	}
+
+	public Image getFullImage() {
+		return fullImage;
+	}
+
 }
