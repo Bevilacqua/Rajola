@@ -1,20 +1,19 @@
 package rajola.test;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.BasicGame;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
-import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
 import rajola.pipeline.TileSpriteSheet;
+import rajola.pipeline.sprites.Sprite;
 
 public class SpriteSheetTest extends BasicGame {
 
 	private TileSpriteSheet spriteSheet;
+	private TileSpriteSheet spriteSheet2;
+	private Sprite sprite;
 
 	public SpriteSheetTest() {
 		super("Rajola| SPRITE SHEET TEST");
@@ -33,11 +32,15 @@ public class SpriteSheetTest extends BasicGame {
 		for (int i = 0; i < 4; i++) {
 			spriteSheet.getTileImage(i % 2, (int)Math.floor(i / 2)).draw((i * 40) + xOffset , yOffset);
 		}
+		spriteSheet2.getFullImage().draw(100 ,100);
+		sprite.drawSprite(100, 150);
 	}
 
 	@Override
 	public void init(GameContainer gc) throws SlickException {
 		spriteSheet = new TileSpriteSheet("res/test.png", 16);
+		spriteSheet2 = new TileSpriteSheet("res/test.png");
+		sprite = new Sprite(spriteSheet2.getFullImage());
 	}
 
 	@Override

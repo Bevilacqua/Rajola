@@ -1,7 +1,7 @@
 package rajola.pipeline.sprites;
 
 import java.util.ArrayList;
-import java.util.Collection;
+import java.util.List;
 
 import org.newdawn.slick.Image;
 
@@ -9,13 +9,16 @@ public class Sprite {
 
 	private int height;
 	private int width;
-	private Collection<Image> frames;
+	private List<Image> frames;
 	private int currentFrame;
 	private int animationSpeed;
 	
-	public Sprite() {
+	public Sprite(Image image) {
 		frames = new ArrayList<Image>();
-		animationSpeed = 1000;
+		this.width = image.getWidth();
+		this.height = image.getHeight();
+		frames.add(image);
+		this.animationSpeed = 0;
 	}
 	
 	/**
@@ -26,15 +29,21 @@ public class Sprite {
 		this.animationSpeed = animationSpeed;
 	}
 	
-	/*
-	 * Sets width and height in pixels
-	 * Sets animation speed in milliseconds
+	/**
+	 * @param height height of the sprite
+	 * @param width width of the sprite
+	 * @param animationSpeed animationSpeed of sprite in milliseconds
+	 * @param image list of images to be included in animation loop
 	 */
-	public Sprite(int height, int width, int animationSpeed){
-		this();
-		this.height = height;
-		this.width = width;
+	public Sprite(int animationSpeed , List<Image> image){
+		frames = image;
+		this.width = image.get(0).getWidth();
+		this.height = image.get(0).getHeight();
 		this.animationSpeed = animationSpeed;
+	}
+	
+	public void drawSprite(int x , int y) {
+		this.frames.get(currentFrame).draw(x , y);
 	}
 	
 
@@ -67,9 +76,9 @@ public class Sprite {
 	}
 
 	/**
-	 * @return the frames collection
+	 * @return the frames List
 	 */
-	public Collection<Image> getFrames() {
+	public List<Image> getFrames() {
 		return frames;
 	}
 
