@@ -2,7 +2,11 @@ package rajola.pipeline;
 
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
+import java.io.BufferedInputStream;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.imageio.ImageIO;
@@ -14,11 +18,13 @@ import rajola.pipeline.tools.ImageTools;
 public class TileSpriteSheet {
 	
 	private String path;
+	private InputStream inputStream;
+	
 	private int size; //Width = Height = size
 	private int tileSize;
 
 	private int pixels[];
-    private List<Image> tilesImages;
+    private List<Image> tilesImages = new ArrayList<Image>();
     
     private BufferedImage bImage;
     private int[] bPixels;
@@ -30,6 +36,14 @@ public class TileSpriteSheet {
 	public TileSpriteSheet(String path , int size) {
 		this.size = size;
 		this.path = path;
+
+		try {
+			inputStream =  new BufferedInputStream(new FileInputStream(path));
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		
 		pixels = new int[this.size * this.size];
 		loadSpriteSheetImage();
 	}
@@ -44,6 +58,14 @@ public class TileSpriteSheet {
 		this.size = size;
 		this.path = path;
 		this.tileSize = tileSize;
+		
+		try {
+			inputStream =  new BufferedInputStream(new FileInputStream(path));
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		
 		pixels = new int[this.size * this.size];
 		loadSpriteSheetImage();
 		organizeImages();
@@ -55,7 +77,7 @@ public class TileSpriteSheet {
 	private void loadSpriteSheetImage() {
 		
 		try {
-			BufferedImage image = ImageIO.read(TileSpriteSheet.class.getResource(path));
+			BufferedImage image = ImageIO.read(inputStream);
 			int w = image.getWidth();
 			int h = image.getHeight();
 			image.getRGB(0, 0, w, h, pixels, 0, w);
@@ -71,7 +93,7 @@ public class TileSpriteSheet {
 	private void organizeImages() {
 		if(tileSize <= 0 ) return;
 		
-		//TODO: Test this because its confusing me :)
+		//TODO: This currently does not work, fix needed
 		for(int y = 0 ; y < this.size ; y++) {
 			for(int x = 0 ; x < this.size ; x++) {
 				bImage = new BufferedImage(this.tileSize , this.tileSize , BufferedImage.TYPE_INT_RGB);
