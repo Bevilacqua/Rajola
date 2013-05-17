@@ -30,6 +30,9 @@ public class SpriteSheetTest extends BasicGame {
 	@Override
 	public void render(GameContainer gc, Graphics g) throws SlickException {
 		tiles.get(0).draw(50, 50); //Will draw the first tile (0 , 0)
+		tiles.get(1).draw(66,50);
+//		tiles.get(2).draw(72,72);
+//		tiles.get(3).draw(88,88);
 	}
 
 	@Override

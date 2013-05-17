@@ -101,11 +101,12 @@ public class TileSpriteSheet {
 				for(int localY = 0 ; localY < this.tileSize ; localY++ ) {
 					for(int localX = 0 ; localX < this.tileSize ; localX++) {
 						bPixels[localX * localY] = pixels[(x + localX) * (y + localY)];
-						x++;
 					}
-					y++;
+					
 				}
 				this.tilesImages.add(ImageTools.toSlickImage(bImage));
+				x += this.tileSize;
+				y += this.tileSize;
 			}
 		}
 	}
