@@ -1,112 +1,37 @@
 package rajola.pipeline;
 
-import java.awt.image.BufferedImage;
-import java.awt.image.DataBufferInt;
-import java.io.BufferedInputStream;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.imageio.ImageIO;
-
 import org.newdawn.slick.Image;
-
-import rajola.pipeline.tools.ImageTools;
+import org.newdawn.slick.SlickException;
 
 public class TileSpriteSheet {
 	
 	private String path;
-	private InputStream inputStream;
-	
-	private int size; //Width = Height = size
 	private int tileSize;
-
-	private int pixels[];
-    private List<Image> tilesImages = new ArrayList<Image>();
-    
-    private BufferedImage bImage;
-    private int[] bPixels;
+    private Image[][] tileImages;
 	
 	/**
 	 * @param path the path to the sprite sheet
 	 * @param size the size of the sprite sheet, the sprite sheet must have an equal height and width
 	 */
-	public TileSpriteSheet(String path , int size) {
-		this.size = size;
-		this.path = path;
-
-		try {
-			inputStream =  new BufferedInputStream(new FileInputStream(path));
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
-		
-		
-		pixels = new int[this.size * this.size];
-		loadSpriteSheetImage();
-	}
-	
-	/**
-	 * this constructor will produce an array of slick images each the size of one tile
-	 * @param path the path to the sprite sheet
-	 * @param size the size of the sprite sheet, the sprite sheet must have an equal height and width
-	 * @param tileSize the size of the tiles
-	 */
-	public TileSpriteSheet(String path , int size , int tileSize) {
-		this.size = size;
-		this.path = path;
+	public TileSpriteSheet(String path , int tileSize) {
 		this.tileSize = tileSize;
-		
+		this.path = path;
+
+		// Load the full image so we can split it up in tiles
+		Image completeImage = null;
 		try {
-			inputStream =  new BufferedInputStream(new FileInputStream(path));
-		} catch(Exception e) {
+			completeImage = new Image(path);
+		} catch (SlickException e) {
 			e.printStackTrace();
 		}
 		
+		// Instantiate our array the right size
+		tileImages = new Image[completeImage.getWidth()/tileSize][completeImage.getHeight()/tileSize];
 		
-		pixels = new int[this.size * this.size];
-		loadSpriteSheetImage();
-		organizeImages();
-	}
-	
-	/*
-	 * Load the spritesheet and store the pixel data in pixels array
-	 */
-	private void loadSpriteSheetImage() {
-		
-		try {
-			BufferedImage image = ImageIO.read(inputStream);
-			int w = image.getWidth();
-			int h = image.getHeight();
-			image.getRGB(0, 0, w, h, pixels, 0, w);
-		} catch(IOException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	/*
-	 *Organize the sprite sheet into an array of Slick2D images that contain one tile each 
-	 *Must define tile size to use 
-	 */
-	private void organizeImages() {
-		if(tileSize <= 0 ) return;
-		
-		//TODO: This currently does not work, fix needed
-		for(int y = 0 ; y < this.size ; y++) {
-			for(int x = 0 ; x < this.size ; x++) {
-				bImage = new BufferedImage(this.tileSize , this.tileSize , BufferedImage.TYPE_INT_RGB);
-				bPixels = ((DataBufferInt) bImage.getRaster().getDataBuffer()).getData();
-				for(int localY = 0 ; localY < this.tileSize ; localY++ ) {
-					for(int localX = 0 ; localX < this.tileSize ; localX++) {
-						bPixels[localX * localY] = pixels[(x + localX) * (y + localY)];
-					}
-					
-				}
-				this.tilesImages.add(ImageTools.toSlickImage(bImage));
-				x += this.tileSize;
-				y += this.tileSize;
+		// Assign each Image in our array to a sub-part of the complete tileset
+		for (int x = 0; x < tileImages.length; x++){
+			for (int y = 0; y < tileImages[x].length; y++) {
+				tileImages[x][y] = completeImage.getSubImage(x * tileSize, y * tileSize, tileSize, tileSize);
 			}
 		}
 	}
@@ -114,9 +39,49 @@ public class TileSpriteSheet {
 	/**
 	 * @return List of images containing individual tiles
 	 */
-	public List<Image> getTiles() {
-		if(this.tilesImages !=null) return this.tilesImages;
-		else throw new NullPointerException(); //This may be a little much...
+	public Image[][] getTiles() {
+		return this.tileImages;
 	}
 	
+	/*
+	 * @return Width of the tile set in tiles
+	 */
+	public int getTileWidth() {
+		return this.tileImages.length;
+	}
+	
+	/*
+	 * @return Height of the tile set in tiles
+	 */
+	public int getTileHeight() {
+		return this.tileImages[0].length;
+	}
+	
+	/*
+	 * @return Width of the tile set in pixels
+	 */
+	public int getWidth() {
+		return this.getTileWidth()*this.tileSize;
+	}
+	
+	/*
+	 * @return Width of the tile set in pixels
+	 */
+	public int getHeight() {
+		return this.getTileHeight()*this.tileSize;
+	}
+	
+	/*
+	 * @return Image at specified index
+	 */
+	public Image getTileImage(int x, int y) {
+		return tileImages[x][y];
+	}
+	
+	/*
+	 * @return The tile set path
+	 */
+	public String getPath() {
+		return this.path;
+	}
 }

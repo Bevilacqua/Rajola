@@ -15,7 +15,6 @@ import rajola.pipeline.TileSpriteSheet;
 public class SpriteSheetTest extends BasicGame {
 
 	private TileSpriteSheet spriteSheet;
-	private List<Image> tiles = new ArrayList<Image>();
 
 	public SpriteSheetTest() {
 		super("Rajola| SPRITE SHEET TEST");
@@ -29,16 +28,16 @@ public class SpriteSheetTest extends BasicGame {
 
 	@Override
 	public void render(GameContainer gc, Graphics g) throws SlickException {
-		tiles.get(0).draw(50, 50); //Will draw the first tile (0 , 0)
-		tiles.get(1).draw(66,50);
-//		tiles.get(2).draw(72,72);
-//		tiles.get(3).draw(88,88);
+		int yOffset = 50;
+		int xOffset = 50;
+		for (int i = 0; i < 4; i++) {
+			spriteSheet.getTileImage(i % 2, (int)Math.floor(i / 2)).draw((i * 40) + xOffset , yOffset);
+		}
 	}
 
 	@Override
 	public void init(GameContainer gc) throws SlickException {
-		spriteSheet = new TileSpriteSheet("res/test.png", 32, 16);
-		tiles = spriteSheet.getTiles();	
+		spriteSheet = new TileSpriteSheet("res/test.png", 16);
 	}
 
 	@Override
