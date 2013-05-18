@@ -7,17 +7,18 @@ import org.newdawn.slick.BasicGame;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.SpriteSheet;
 
 import rajola.pipeline.BasicTile;
 import rajola.pipeline.Tile;
-import rajola.pipeline.sprites.SpriteSheet;
 import rajola.pipeline.sprites.TileSprite;
+import rajola.pipeline.sprites.TileSpriteSheet;
 
 public class SpriteSheetTest extends BasicGame {
 
-	private SpriteSheet spriteSheet;
-	private SpriteSheet spriteSheet2;
-	private SpriteSheet animatedSheet;
+	private TileSpriteSheet spriteSheet;
+	private TileSpriteSheet spriteSheet2;
+	private TileSpriteSheet animatedSheet;
 	private TileSprite sprite;
 	private TileSprite animatedSprite;
 	private Tile tile;
@@ -51,9 +52,9 @@ public class SpriteSheetTest extends BasicGame {
 
 	@Override
 	public void init(GameContainer gc) throws SlickException {
-		spriteSheet = new SpriteSheet("res/test.png", 16);
-		animatedSheet = new SpriteSheet("res/test.png", 16);
-		spriteSheet2 = new SpriteSheet("res/test.png");
+		spriteSheet = new TileSpriteSheet("res/test.png", 16);
+		animatedSheet = new TileSpriteSheet("res/test.png", 16);
+		spriteSheet2 = new TileSpriteSheet("res/test.png");
 		sprite = new TileSprite(spriteSheet2.getFullImage());
 		sprites = TileSprite.autoConstructSprites(spriteSheet.getTiles());
 		animatedSprite = new TileSprite(1000 , animatedSheet.getTiles());

@@ -5,13 +5,14 @@ import org.newdawn.slick.BasicGame;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.SpriteSheet;
 
 import rajola.pipeline.TileMap;
-import rajola.pipeline.sprites.SpriteSheet;
+import rajola.pipeline.sprites.TileSpriteSheet;
 
 public class BasicPlaformerTest extends BasicGame {
 
-	protected SpriteSheet spriteSheet;
+	protected TileSpriteSheet spriteSheet;
 	protected TileMap map;
 	
 	public BasicPlaformerTest() {
@@ -36,7 +37,7 @@ public class BasicPlaformerTest extends BasicGame {
 
 	@Override
 	public void init(GameContainer gc) throws SlickException {
-		spriteSheet = new SpriteSheet("res/tileset.jpg", 32);
+		spriteSheet = new TileSpriteSheet("res/tileset.jpg", 32);
 		map = new TileMap();
 		
 	}
