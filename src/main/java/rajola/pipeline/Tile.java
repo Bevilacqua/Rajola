@@ -23,9 +23,9 @@ public abstract class Tile {
 	
 	public void render(int x , int y) {} 
 	
-	public void update(int DELTA) {		
+	public void update(int d) {		
 		if(elapsedTime < this.sprite.getAnimationSpeed()) {
-			elapsedTime += DELTA;
+			elapsedTime += d;
 		} else {
 			if(this.sprite.getCurrentFrame() < this.sprite.getFrames().size() - 1) this.sprite.incrementFrame();
 			else this.sprite.setCurrentFrame(0);
@@ -43,8 +43,15 @@ public abstract class Tile {
 	/**
 	 * @return if the tile is solid (collidable)
 	 */
-	public boolean solid() {
+	public boolean getSolid() {
 		return this.solid;
+	}
+	
+	/**
+	 * @param solid if the tile is solid (collidable)
+	 */
+	public void setSolid(boolean solid) {
+		this.solid = solid;
 	}
 	
 	/**
@@ -61,6 +68,13 @@ public abstract class Tile {
 	 */
 	public TileSprite getSprite() {
 		return this.sprite;
+	}
+	
+	/**
+	 * @param sprite the Tile sprite image
+	 */
+	public void setSprite(TileSprite sprite) {
+		this.sprite = sprite;
 	}
 	
 	/**

@@ -1,6 +1,6 @@
-package rajola.pipeline.sprites;
+package rajola.pipeline;
 
-import rajola.pipeline.Tile;
+import rajola.pipeline.sprites.TileSprite;
 
 public class BasicTile extends Tile {
 

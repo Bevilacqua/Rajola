@@ -8,9 +8,9 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 
+import rajola.pipeline.BasicTile;
 import rajola.pipeline.Tile;
 import rajola.pipeline.TileSpriteSheet;
-import rajola.pipeline.sprites.BasicTile;
 import rajola.pipeline.sprites.TileSprite;
 
 public class SpriteSheetTest extends BasicGame {
@@ -25,7 +25,7 @@ public class SpriteSheetTest extends BasicGame {
 	private List<TileSprite> sprites;
 
 	public SpriteSheetTest() {
-		super("Rajola| SPRITE SHEET TEST");
+		super("Rajola SPRITE SHEET TEST");
 	}
 
 	public static void main(String args[]) throws SlickException {
