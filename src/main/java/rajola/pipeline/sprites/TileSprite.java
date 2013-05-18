@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.newdawn.slick.Image;
 
-public class Sprite {
+public class TileSprite {
 
 	private int height;
 	private int width;
@@ -13,7 +13,7 @@ public class Sprite {
 	private int currentFrame;
 	private int animationSpeed;
 	
-	public Sprite(Image image) {
+	public TileSprite(Image image) {
 		frames = new ArrayList<Image>();
 		this.width = image.getWidth();
 		this.height = image.getHeight();
@@ -24,7 +24,7 @@ public class Sprite {
 	/**
 	 * @param animationSpeed the animation speed in milliseconds
 	 */
-	public Sprite(int animationSpeed) {
+	public TileSprite(int animationSpeed) {
 		frames = new ArrayList<Image>();
 		this.animationSpeed = animationSpeed;
 	}
@@ -35,7 +35,7 @@ public class Sprite {
 	 * @param animationSpeed animationSpeed of sprite in milliseconds
 	 * @param image list of images to be included in animation loop
 	 */
-	public Sprite(int animationSpeed , List<Image> image){
+	public TileSprite(int animationSpeed , List<Image> image){
 		frames = image;
 		this.width = image.get(0).getWidth();
 		this.height = image.get(0).getHeight();

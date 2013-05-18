@@ -7,13 +7,13 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 
 import rajola.pipeline.TileSpriteSheet;
-import rajola.pipeline.sprites.Sprite;
+import rajola.pipeline.sprites.TileSprite;
 
 public class SpriteSheetTest extends BasicGame {
 
 	private TileSpriteSheet spriteSheet;
 	private TileSpriteSheet spriteSheet2;
-	private Sprite sprite;
+	private TileSprite sprite;
 
 	public SpriteSheetTest() {
 		super("Rajola| SPRITE SHEET TEST");
@@ -40,7 +40,7 @@ public class SpriteSheetTest extends BasicGame {
 	public void init(GameContainer gc) throws SlickException {
 		spriteSheet = new TileSpriteSheet("res/test.png", 16);
 		spriteSheet2 = new TileSpriteSheet("res/test.png");
-		sprite = new Sprite(spriteSheet2.getFullImage());
+		sprite = new TileSprite(spriteSheet2.getFullImage());
 	}
 
 	@Override
