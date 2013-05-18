@@ -3,7 +3,7 @@ package rajola.pipeline.sprites;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
-public class SpriteSheet {
+public class TileSpriteSheet {
 
 	private String path;
 	private int tileSize;
@@ -14,7 +14,7 @@ public class SpriteSheet {
      * @param path path to the image
      * This constructor does not create array of tiles
      */
-	public SpriteSheet(String path) {
+	public TileSpriteSheet(String path) {
 		this.path = path;
 		
 		try {
@@ -28,7 +28,7 @@ public class SpriteSheet {
 	 * @param path the path to the sprite sheet
 	 * @param size the size of the sprite sheet, the sprite sheet must have an equal height and width
 	 */
-	public SpriteSheet(String path , int tileSize) {
+	public TileSpriteSheet(String path , int tileSize) {
 		this.tileSize = tileSize;
 		this.path = path;
 
