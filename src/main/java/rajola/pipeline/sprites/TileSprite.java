@@ -42,11 +42,26 @@ public class TileSprite {
 		this.animationSpeed = animationSpeed;
 	}
 	
+	/**
+	 * @param image 2D array of images
+	 * @return list of sprites
+	 * Not to be used for animation
+	 */
+	public static List<TileSprite> autoConstructSprites(Image[][] image) {
+		List<TileSprite> sprites = new ArrayList<TileSprite>();	
+		for(int y = 0 ; y < image.length ; y++) {
+			for(int x = 0 ; x < image.length ; x++) {
+				sprites.add(new TileSprite(image[x][y]));
+			}
+		}
+		return sprites;
+	}
+	
+	
 	public void drawSprite(int x , int y) {
 		this.frames.get(currentFrame).draw(x , y);
 	}
 	
-
 	/**
 	 * @return the height
 	 */

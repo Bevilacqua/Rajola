@@ -1,5 +1,7 @@
 package rajola.test;
 
+import java.util.List;
+
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.BasicGame;
 import org.newdawn.slick.GameContainer;
@@ -14,6 +16,8 @@ public class SpriteSheetTest extends BasicGame {
 	private TileSpriteSheet spriteSheet;
 	private TileSpriteSheet spriteSheet2;
 	private TileSprite sprite;
+	
+	private List<TileSprite> sprites;
 
 	public SpriteSheetTest() {
 		super("Rajola| SPRITE SHEET TEST");
@@ -34,6 +38,9 @@ public class SpriteSheetTest extends BasicGame {
 		}
 		spriteSheet2.getFullImage().draw(100 ,100);
 		sprite.drawSprite(100, 150);
+		for(int i = 0 ; i < sprites.size() ; i++) {
+			sprites.get(i).drawSprite(50 + (i * 2 *sprites.get(i).getWidth()), 200);
+		}
 	}
 
 	@Override
@@ -41,6 +48,7 @@ public class SpriteSheetTest extends BasicGame {
 		spriteSheet = new TileSpriteSheet("res/test.png", 16);
 		spriteSheet2 = new TileSpriteSheet("res/test.png");
 		sprite = new TileSprite(spriteSheet2.getFullImage());
+		sprites = TileSprite.autoConstructSprites(spriteSheet.getTiles());
 	}
 
 	@Override
