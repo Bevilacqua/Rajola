@@ -35,12 +35,17 @@ public class TileSprite {
 	 * @param animationSpeed animationSpeed of sprite in milliseconds
 	 * @param image list of images to be included in animation loop
 	 */
-	public TileSprite(int animationSpeed , List<Image> image){
-		frames = image;
-		this.width = image.get(0).getWidth();
-		this.height = image.get(0).getHeight();
+	public TileSprite(int animationSpeed , Image[][] image){
+		for(int y = 0 ; y < image.length ; y++) {
+			for(int x = 0 ; x < image.length ; x++) {
+				frames.add(image[x][y]);
+			}
+		}
+		this.width = image[0][0].getWidth();
+		this.height = image[0][0].getHeight();
 		this.animationSpeed = animationSpeed;
 	}
+	
 	
 	/**
 	 * @param image 2D array of images
@@ -131,6 +136,13 @@ public class TileSprite {
 	 */
 	public void setCurrentFrame(int currentFrame) {
 		this.currentFrame = currentFrame;
+	}
+	
+	/*
+	 * increase the current frame by one
+	 */
+	public void incrementFrame() {
+		this.currentFrame++;
 	}
 
 	/**
