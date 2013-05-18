@@ -36,6 +36,7 @@ public class TileSprite {
 	 * @param image list of images to be included in animation loop
 	 */
 	public TileSprite(int animationSpeed , Image[][] image){
+		frames = new ArrayList<Image>();
 		for(int y = 0 ; y < image.length ; y++) {
 			for(int x = 0 ; x < image.length ; x++) {
 				frames.add(image[x][y]);

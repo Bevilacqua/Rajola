@@ -17,6 +17,7 @@ public class SpriteSheetTest extends BasicGame {
 
 	private TileSpriteSheet spriteSheet;
 	private TileSpriteSheet spriteSheet2;
+	private TileSpriteSheet animatedSheet;
 	private TileSprite sprite;
 	private TileSprite animatedSprite;
 	private Tile tile;
@@ -45,16 +46,17 @@ public class SpriteSheetTest extends BasicGame {
 		for(int i = 0 ; i < sprites.size() ; i++) {
 			sprites.get(i).drawSprite(50 + (i * 2 *sprites.get(i).getWidth()), 200);
 		}
-		tile.drawTile(300, 300);
+		tile.drawTile(0, 0);
 	}
 
 	@Override
 	public void init(GameContainer gc) throws SlickException {
 		spriteSheet = new TileSpriteSheet("res/test.png", 16);
+		animatedSheet = new TileSpriteSheet("res/test.png", 16);
 		spriteSheet2 = new TileSpriteSheet("res/test.png");
 		sprite = new TileSprite(spriteSheet2.getFullImage());
 		sprites = TileSprite.autoConstructSprites(spriteSheet.getTiles());
-		animatedSprite = new TileSprite(1000 , spriteSheet.getTiles());
+		animatedSprite = new TileSprite(1000 , animatedSheet.getTiles());
 		tile = new BasicTile(0 , animatedSprite);
 	}
 
