@@ -4,11 +4,14 @@ import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.BasicGame;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
 import rajola.pipeline.BasicTile;
+import rajola.pipeline.Tile;
 import rajola.pipeline.TileMap;
 import rajola.pipeline.TileMapLayer;
+import rajola.pipeline.sprites.TileSprite;
 import rajola.pipeline.sprites.TileSpriteSheet;
 
 public class BasicPlaformerTest extends BasicGame {
@@ -17,6 +20,9 @@ public class BasicPlaformerTest extends BasicGame {
 	
 	protected TileSpriteSheet spriteSheet;
 	protected TileMap map;
+	Tile animatedTile;
+
+	private TileSprite AnimatedSprite;
 	
 	public BasicPlaformerTest() {
 		super("Rajola - Basic platformer integration test");
@@ -35,7 +41,9 @@ public class BasicPlaformerTest extends BasicGame {
 
 	@Override
 	public void update(GameContainer gc, int d) throws SlickException {
+		animatedTile.update(d);
 		map.update(gc, d);
+		
 	}
 
 	@Override
@@ -43,9 +51,11 @@ public class BasicPlaformerTest extends BasicGame {
 		spriteSheet = new TileSpriteSheet("res/tileset.jpg", TILE_SIZE);
 		map = new TileMap();
 		map.fillBackgroundLayer(spriteSheet.getTileSprite(1, 0), 20, 15);
-		
 		TileMapLayer firstLayer = new TileMapLayer(1, "Platforms");
 		map.addLayer(firstLayer);
+		Image tiles[][] = new Image[][] {{spriteSheet.getTileImage(7, 1) , spriteSheet.getTileImage(8, 1)}};
+		AnimatedSprite = new TileSprite(1000 , tiles);
+		animatedTile = new BasicTile(1 , AnimatedSprite);
 		
 		firstLayer.addTile(new BasicTile(0,spriteSheet.getTileSprite(5, 7)), 0, 6);
 		firstLayer.addTile(new BasicTile(0,spriteSheet.getTileSprite(6, 7)), 1, 6);
@@ -79,7 +89,7 @@ public class BasicPlaformerTest extends BasicGame {
 		map.addLayer(fgLayer);
 		
 		for (int i = 0; i < 20; i++){
-			fgLayer.addTile(new BasicTile(0,spriteSheet.getTileSprite(5 + (i%5), 1)), i, 13);
+			fgLayer.addTile(animatedTile, i, 13);
 			fgLayer.addTile(new BasicTile(0,spriteSheet.getTileSprite(9, 2)), i, 14);
 		}
 		
