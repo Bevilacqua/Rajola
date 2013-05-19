@@ -8,4 +8,8 @@ public class BasicTile extends Tile {
 		super(id, sprite);
 	}
 
+	public BasicTile(int id, TileSprite tile, boolean solid) {
+		super(id, tile, solid);
+	}
+
 }

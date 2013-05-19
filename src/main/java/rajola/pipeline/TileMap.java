@@ -1,5 +1,6 @@
 package rajola.pipeline;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
@@ -8,12 +9,13 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 
+import rajola.pipeline.sprites.TileSprite;
 import rajola.pipeline.tools.Renderable;
 import sun.tools.tree.OrExpression;
 
 /**
  * 
- * @author Frédéric-Antoine Gingras
+ * @author Frederic-Antoine Gingras
  *
  * The TileMap class holds a collection of all the tiles on the map and their positions, ids, attributes
  * It's has multiple functions to ease map creation programaticly.
@@ -24,12 +26,13 @@ public class TileMap implements Renderable {
 	private List<TileMapLayer> layers; 
 	
 	public TileMap(){
-		
+		layers = new ArrayList<TileMapLayer>();
 	}
 	/**
 	 * @param tiles pre-fills the tiles of the TileMap
 	 */
 	public TileMap(List<TileMapLayer> layers){
+		this();
 		this.layers = layers;
 	}
 	
@@ -38,6 +41,26 @@ public class TileMap implements Renderable {
 	 */
 	public void addLayer(TileMapLayer layer){
 		this.layers.add(layer);
+	}
+	
+	/**
+	 * Fills a background layer with a specified sprite and sets it a low importance
+	 * @param bgTile
+	 * @param width
+	 * @param height
+	 */
+	public void fillBackgroundLayer(TileSprite bgTile, int width, int height){
+		// Instantiate that new layer
+		TileMapLayer tLayer = new TileMapLayer(-1, "Background");
+		// Tile to use for filling
+		Tile tile = new BasicTile(0, bgTile, false);
+		Tile[][] tiles = new Tile[width][height];
+		// Loop and fill the layer with specified sprite
+		for (int i = 0; i < width; i++){
+			Arrays.fill(tiles[i], tile);
+		}
+		tLayer.setTiles(tiles);
+		layers.add(tLayer);
 	}
 	
 	public TileMapLayer[] getLayersOrderedByImportance(){

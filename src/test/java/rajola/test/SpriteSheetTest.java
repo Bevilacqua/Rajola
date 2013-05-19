@@ -43,11 +43,11 @@ public class SpriteSheetTest extends BasicGame {
 			spriteSheet.getTileImage(i % 2, (int)Math.floor(i / 2)).draw((i * 40) + xOffset , yOffset);
 		}
 		spriteSheet2.getFullImage().draw(100 ,100);
-		sprite.drawSprite(100, 150);
+		sprite.render(100, 150);
 		for(int i = 0 ; i < sprites.size() ; i++) {
-			sprites.get(i).drawSprite(50 + (i * 2 *sprites.get(i).getWidth()), 200);
+			sprites.get(i).render(50 + (i * 2 *sprites.get(i).getWidth()), 200);
 		}
-		tile.drawTile(0, 0);
+		tile.render(0, 0);
 	}
 
 	@Override
@@ -62,7 +62,7 @@ public class SpriteSheetTest extends BasicGame {
 	}
 
 	@Override
-	public void update(GameContainer gc, int DELTA) throws SlickException {
-		tile.update(DELTA);
+	public void update(GameContainer gc, int d) throws SlickException {
+		tile.update(d);
 	}
 }

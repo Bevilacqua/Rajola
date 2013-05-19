@@ -10,7 +10,7 @@ import rajola.pipeline.tools.Renderable;
 
 /**
  * 
- * @author Frédéric-Antoine Gingras
+ * @author Frederic-Antoine Gingras
  *
  * The TileMapLayer class represents a tile map layer of rendering this offers
  * the flexibility to overlay different TileSprite, e.g.: a background layer has
@@ -31,6 +31,7 @@ public class TileMapLayer implements Renderable {
 	public TileMapLayer(){
 		this.id = nextId;
 		nextId++;
+		tiles = new Tile[0][0];
 	}
 	public TileMapLayer(Integer importance, String name){
 		this();
@@ -52,19 +53,34 @@ public class TileMapLayer implements Renderable {
 	}
 	
 	private void ensureTilesSize(int x, int y){
-		if (tiles.length < x)
+		Tile[][] oldTiles = this.tiles;
+		this.tiles = new Tile[x > oldTiles.length ? x : oldTiles.length][y > oldTiles[0].length ? y : oldTiles[0].length];
+		if (tiles.length < x-1)
 			tiles = Arrays.copyOf(tiles, x);
-		if (tiles[x].length < y)
+		if (tiles[x].length < y-1)
 			tiles[x] = Arrays.copyOf(tiles[x], y);
 	}
 	
 	@Override
 	public void render(GameContainer gc, Graphics g) throws SlickException {
-		
+		for (int x = 0; x < tiles.length; x++){
+			for (int y = 0; y < tiles[x].length; y++){
+				if (tiles[x][y] != null)
+					tiles[x][y].render(
+							x*tiles[x][y].getSprite().getWidth(), 
+							y*tiles[x][y].getSprite().getHeight()
+						);
+			}
+		}
 	}
 	@Override
 	public void update(GameContainer gc, int d) throws SlickException {
-		
+		for (int x = 0; x < tiles.length; x++){
+			for (int y = 0; y < tiles[x].length; y++){
+				if (tiles[x][y] != null)
+					tiles[x][y].update(d);
+			}
+		}
 	}
 
 	/**

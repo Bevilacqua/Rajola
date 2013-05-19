@@ -21,7 +21,14 @@ public abstract class Tile {
 		this.solid = solid;
 	}
 	
-	public void render(int x , int y) {} 
+	/**
+	 * @param x the location to draw the tile
+	 * @param y the location to draw the tile
+	 * To be used in debugging
+	 */
+	public void render(int x , int y) {
+		sprite.render(x, y);
+	} 
 	
 	public void update(int d) {		
 		if(elapsedTime < this.sprite.getAnimationSpeed()) {
@@ -52,15 +59,6 @@ public abstract class Tile {
 	 */
 	public void setSolid(boolean solid) {
 		this.solid = solid;
-	}
-	
-	/**
-	 * @param x the location to draw the tile
-	 * @param y the location to draw the tile
-	 * To be used in debugging
-	 */
-	public void drawTile(int x , int y) {
-		this.sprite.drawSprite(x, y);
 	}
 	
 	/**

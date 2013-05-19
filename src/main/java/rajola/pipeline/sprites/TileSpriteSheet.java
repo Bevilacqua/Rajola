@@ -33,20 +33,19 @@ public class TileSpriteSheet {
 		this.path = path;
 
 		// Load the full image so we can split it up in tiles
-		Image completeImage = null;
 		try {
-			completeImage = new Image(path);
-		} catch (SlickException e) {
+			fullImage = new Image(path);
+		} catch(SlickException e) {
 			e.printStackTrace();
 		}
 		
 		// Instantiate our array the right size
-		tileImages = new Image[completeImage.getWidth()/tileSize][completeImage.getHeight()/tileSize];
+		tileImages = new Image[fullImage.getWidth()/tileSize][fullImage.getHeight()/tileSize];
 		
 		// Assign each Image in our array to a sub-part of the complete tileset
 		for (int x = 0; x < tileImages.length; x++){
 			for (int y = 0; y < tileImages[x].length; y++) {
-				tileImages[x][y] = completeImage.getSubImage(x * tileSize, y * tileSize, tileSize, tileSize);
+				tileImages[x][y] = fullImage.getSubImage(x * tileSize, y * tileSize, tileSize, tileSize);
 			}
 		}
 	}
@@ -91,6 +90,15 @@ public class TileSpriteSheet {
 	 */
 	public Image getTileImage(int x, int y) {
 		return tileImages[x][y];
+	}
+	/** 
+	 * @return TileSprite at specified index
+	 */
+	public TileSprite getTileSprite(int x, int y) {
+		// TODO: Improve this method so the SpriteSheet contains only
+		//		 TileSprites and getTileImage returns TileSprite.getImage();
+		//		 in order to minimize class instances
+		return new TileSprite(tileImages[x][y]);
 	}
 	
 	/*

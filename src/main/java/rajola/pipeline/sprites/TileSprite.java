@@ -63,8 +63,7 @@ public class TileSprite {
 		return sprites;
 	}
 	
-	
-	public void drawSprite(int x , int y) {
+	public void render(int x, int y){
 		this.frames.get(currentFrame).draw(x , y);
 	}
 	
