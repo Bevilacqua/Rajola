@@ -11,7 +11,6 @@ import org.newdawn.slick.SlickException;
 
 import rajola.pipeline.sprites.TileSprite;
 import rajola.pipeline.tools.Renderable;
-import sun.tools.tree.OrExpression;
 
 /**
  * 
