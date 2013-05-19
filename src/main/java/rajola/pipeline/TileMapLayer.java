@@ -49,16 +49,19 @@ public class TileMapLayer implements Renderable {
 	
 	public void addTile(Tile tile, int x, int y){
 		ensureTilesSize(x, y);
-		tiles[x][y] = tile;
+		this.tiles[x][y] = tile;
 	}
 	
 	private void ensureTilesSize(int x, int y){
 		Tile[][] oldTiles = this.tiles;
-		this.tiles = new Tile[x > oldTiles.length ? x : oldTiles.length][y > oldTiles[0].length ? y : oldTiles[0].length];
-		if (tiles.length < x-1)
-			tiles = Arrays.copyOf(tiles, x);
-		if (tiles[x].length < y-1)
-			tiles[x] = Arrays.copyOf(tiles[x], y);
+		int maxX = x > oldTiles.length ? x : oldTiles.length;
+		int maxY = oldTiles.length == 0 || y > oldTiles[0].length ? y : oldTiles[0].length;
+		this.tiles = new Tile[maxX+1][maxY+1];
+		for (int lx = 0; lx < oldTiles.length; lx++){
+			for (int ly = 0; ly < oldTiles[lx].length; ly++){
+					this.tiles[lx][ly] = oldTiles[lx][ly];
+			}
+		}
 	}
 	
 	@Override

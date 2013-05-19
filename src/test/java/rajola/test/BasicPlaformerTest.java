@@ -9,13 +9,13 @@ import org.newdawn.slick.SlickException;
 import rajola.pipeline.BasicTile;
 import rajola.pipeline.TileMap;
 import rajola.pipeline.TileMapLayer;
-import rajola.pipeline.sprites.SpriteSheet;
+import rajola.pipeline.sprites.TileSpriteSheet;
 
 public class BasicPlaformerTest extends BasicGame {
 
 	final static int TILE_SIZE = 32;
 	
-	protected SpriteSheet spriteSheet;
+	protected TileSpriteSheet spriteSheet;
 	protected TileMap map;
 	
 	public BasicPlaformerTest() {
@@ -40,17 +40,49 @@ public class BasicPlaformerTest extends BasicGame {
 
 	@Override
 	public void init(GameContainer gc) throws SlickException {
-		spriteSheet = new SpriteSheet("res/tileset.jpg", TILE_SIZE);
+		spriteSheet = new TileSpriteSheet("res/tileset.jpg", TILE_SIZE);
 		map = new TileMap();
 		map.fillBackgroundLayer(spriteSheet.getTileSprite(1, 0), 20, 15);
 		
 		TileMapLayer firstLayer = new TileMapLayer(1, "Platforms");
-		
-		firstLayer.addTile(new BasicTile(0,spriteSheet.getTileSprite(5, 7)), 1, 6);
-		firstLayer.addTile(new BasicTile(0,spriteSheet.getTileSprite(6, 7)), 2, 6);
-		firstLayer.addTile(new BasicTile(0,spriteSheet.getTileSprite(7, 7)), 3, 6);
-		
 		map.addLayer(firstLayer);
+		
+		firstLayer.addTile(new BasicTile(0,spriteSheet.getTileSprite(5, 7)), 0, 6);
+		firstLayer.addTile(new BasicTile(0,spriteSheet.getTileSprite(6, 7)), 1, 6);
+		firstLayer.addTile(new BasicTile(0,spriteSheet.getTileSprite(7, 7)), 2, 6);
+		for (int x = 0; x < 3; x++){
+			for (int y = 0; y < 15-6; y++){
+				firstLayer.addTile(new BasicTile(0,spriteSheet.getTileSprite(9, 4)), x, 7 + y);
+			}
+		}
+
+		firstLayer.addTile(new BasicTile(0,spriteSheet.getTileSprite(5, 7)), 4, 8);
+		firstLayer.addTile(new BasicTile(0,spriteSheet.getTileSprite(6, 7)), 5, 8);
+		firstLayer.addTile(new BasicTile(0,spriteSheet.getTileSprite(7, 7)), 6, 8);
+		for (int x = 0; x < 3; x++){
+			for (int y = 0; y < 15-8; y++){
+				firstLayer.addTile(new BasicTile(0,spriteSheet.getTileSprite(9, 4)), 4+x, 9 + y);
+			}
+		}
+
+		firstLayer.addTile(new BasicTile(0,spriteSheet.getTileSprite(5, 7)), 8, 8);
+		firstLayer.addTile(new BasicTile(0,spriteSheet.getTileSprite(6, 7)), 9, 8);
+		firstLayer.addTile(new BasicTile(0,spriteSheet.getTileSprite(7, 7)), 10, 8);
+		for (int x = 0; x < 3; x++){
+			for (int y = 0; y < 15-8; y++){
+				firstLayer.addTile(new BasicTile(0,spriteSheet.getTileSprite(9, 4)), 8+x, 9 + y);
+			}
+		}
+		
+
+		TileMapLayer fgLayer = new TileMapLayer(0, "Forground");
+		map.addLayer(fgLayer);
+		
+		for (int i = 0; i < 20; i++){
+			fgLayer.addTile(new BasicTile(0,spriteSheet.getTileSprite(5 + (i%5), 1)), i, 13);
+			fgLayer.addTile(new BasicTile(0,spriteSheet.getTileSprite(9, 2)), i, 14);
+		}
+		
 		
 	}
 	
