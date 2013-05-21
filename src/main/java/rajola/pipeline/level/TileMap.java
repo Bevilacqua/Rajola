@@ -1,4 +1,4 @@
-package rajola.pipeline;
+package rajola.pipeline.level;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -9,6 +9,8 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 
+import rajola.pipeline.BasicTile;
+import rajola.pipeline.Tile;
 import rajola.pipeline.sprites.TileSprite;
 import rajola.pipeline.tools.Renderable;
 

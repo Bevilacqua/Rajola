@@ -9,8 +9,8 @@ import org.newdawn.slick.SlickException;
 
 import rajola.pipeline.BasicTile;
 import rajola.pipeline.Tile;
-import rajola.pipeline.TileMap;
-import rajola.pipeline.TileMapLayer;
+import rajola.pipeline.level.TileMap;
+import rajola.pipeline.level.TileMapLayer;
 import rajola.pipeline.sprites.TileSprite;
 import rajola.pipeline.sprites.TileSpriteSheet;
 
@@ -22,7 +22,7 @@ public class BasicPlaformerTest extends BasicGame {
 	protected TileMap map;
 	Tile animatedTile;
 
-	private TileSprite AnimatedSprite;
+	private TileSprite animatedSprite;
 	
 	public BasicPlaformerTest() {
 		super("Rajola - Basic platformer integration test");
@@ -54,8 +54,8 @@ public class BasicPlaformerTest extends BasicGame {
 		TileMapLayer firstLayer = new TileMapLayer(1, "Platforms");
 		map.addLayer(firstLayer);
 		Image tiles[][] = new Image[][] {{spriteSheet.getTileImage(7, 1) , spriteSheet.getTileImage(8, 1)}};
-		AnimatedSprite = new TileSprite(1000 , tiles);
-		animatedTile = new BasicTile(1 , AnimatedSprite);
+		animatedSprite = new TileSprite(1000 , tiles);
+		animatedTile = new BasicTile(1 , animatedSprite);
 		
 		firstLayer.addTile(new BasicTile(0,spriteSheet.getTileSprite(5, 7)), 0, 6);
 		firstLayer.addTile(new BasicTile(0,spriteSheet.getTileSprite(6, 7)), 1, 6);
