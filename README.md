@@ -12,7 +12,8 @@ The goal of **Rajola** is to provide Java game developpers with a standardized w
 
 Here are few functionalities that are (or will) be included:
 
--    **TileMap :** the glue between all the parts, contains the tiles
+-    **TileMap :** the glue between all the parts, contains the tiles; includes map layers
+-    **TileLevel :** an alternative to the _TileMap_ whick allows map creation through a pixel image
 -    **TileMapCamera :** will handle map scrolling and smooth scrolling/centering
 -    **Tile :** the smallest unit
 -    **Sprite :** represents _Tile_ image, can be animated
