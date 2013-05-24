@@ -24,6 +24,9 @@ public class TileLevel {
 	private String path;
 	private Tile[] tileSet; //The position in the tileSet should corespond to the tiles ID
 	
+	private int xOffset , yOffset;
+	private int shiftCount;
+	
 	private int[] tiles;
 	private BufferedImage mapImage;
 	
@@ -53,6 +56,7 @@ public class TileLevel {
 			this.height = this.mapImage.getHeight();
 			tiles = new int[width * height];
 			this.loadTiles();
+			this.shiftCount = this.tileShiftTest();
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -72,8 +76,54 @@ public class TileLevel {
 		}
 	}
 	
-	public void renderTiles(int xOffset , int yOffset) {
-		//TODO: Actually Render the tiles
+	public void renderTiles(int xOffset , int yOffset) {	
+		int tileSize = this.tileSet[0].getSprite().getHeight();
+		setOffset(xOffset , yOffset);
+		
+		int x0 = xOffset >> this.shiftCount;
+		int x1 = (xOffset + width + tileSize) >> this.shiftCount;
+		int y0 = yOffset >> this.shiftCount;
+		int y1 = (yOffset + height + tileSize) >> this.shiftCount;
+
+		for (int y = y0; y < y1; y++) {
+			for (int x = x0; x < x1; x++) {
+
+				getTile(x , y).render(x, y);
+			}
+		}
+	}
+	
+	  public Tile getTile(int x, int y) {
+	        if (0 > x || x >= width || 0 > y || y >= height) {
+	        	//Return void tile
+	        } else {
+	        	for(int i = 0 ; i < this.tileSet.length ; i++) {
+	        		if(tiles[x + y * width] == this.tileSet[i].getId()) {
+	        			return this.tileSet[i];
+	        		}
+	        	}
+	        }
+			return null; //TODO: return void tile
+	       
+	    }
+
+	private int tileShiftTest() {
+		int r = 0;
+		int hold = this.tileSet[0].getSprite().getHeight();
+		
+		for(int i = 0 ; i < this.tileSet[0].getSprite().getHeight() ; i++) {
+			hold /= 2;
+			r++;
+			if(hold <= 1) {
+				break;
+			}
+		}
+		return r;
+	}
+	  
+	private void setOffset(int xOffset, int yOffset) {
+		this.xOffset = xOffset;
+		this.yOffset = yOffset;
 	}
 
 	public String getIdentifier() {
