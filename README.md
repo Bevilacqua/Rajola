@@ -6,7 +6,7 @@ This is a **work in progress**, **open source**, class library for Slick2D the J
 
 ## Introduction
 
-The goal of **Rajola** is to provide Java game developpers with a standardized way to implement a tile map in their games without the requirement for any external tools.
+The goal of **Rajola** is to provide Java game developers with a standardized way to implement a tile map in their games without the requirement for any external tools.
 
 ## What's included
 
