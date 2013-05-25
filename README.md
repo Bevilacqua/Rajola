@@ -24,3 +24,5 @@ Here are few functionalities that are (or will) be included:
 The more we are, the more fun we have.
 
 The project is still very experimental but you are welcome to **fork**, code, and send a pull request!
+
+Want to contribute with **documentation** head over to the wiki.
