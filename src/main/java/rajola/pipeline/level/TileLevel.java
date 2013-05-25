@@ -20,6 +20,7 @@ import rajola.pipeline.Tile;
 public class TileLevel {
 
 	private int height , width;
+	private int screenHeight = 256 , screenWidth = 256; //TODO: should be defined by user just for testing
 	private String identifier;
 	private String path;
 	private Tile[] tileSet; //The position in the tileSet should corespond to the tiles ID
@@ -81,20 +82,19 @@ public class TileLevel {
 		setOffset(xOffset , yOffset);
 		
 		int x0 = xOffset >> this.shiftCount;
-		int x1 = (xOffset + width + tileSize) >> this.shiftCount;
+		int x1 = (xOffset + screenWidth + tileSize) >> this.shiftCount;
 		int y0 = yOffset >> this.shiftCount;
-		int y1 = (yOffset + height + tileSize) >> this.shiftCount;
+		int y1 = (yOffset + screenHeight + tileSize) >> this.shiftCount;
 
 		for (int y = y0; y < y1; y++) {
 			for (int x = x0; x < x1; x++) {
-
-				getTile(x , y).render(x, y);
+				getTile(x , y).render(x << this.shiftCount, y << this.shiftCount);
 			}
 		}
 	}
 	
 	  public Tile getTile(int x, int y) {
-	        if (0 > x || x >= width || 0 > y || y >= height) {
+	        if (0 > x || x >= screenWidth || 0 > y || y >= screenHeight) {
 	        	//Return void tile
 	        } else {
 	        	for(int i = 0 ; i < this.tileSet.length ; i++) {
@@ -144,6 +144,12 @@ public class TileLevel {
 	
 	public void setTileSet(Tile[] tileSet) {
 		this.tileSet = tileSet;
+	}
+
+	public void update(int DELTA) {
+		for(int i = 0 ; i < this.tileSet.length ; i++ ) {
+			this.tileSet[i].update(DELTA);
+		}
 	}
 	
 }

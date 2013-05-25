@@ -29,7 +29,7 @@ public class TileLevelTest extends BasicGame {
 
 	@Override
 	public void render(GameContainer gc, Graphics g) throws SlickException {
-		level.renderTiles(50, 50);
+		level.renderTiles(0, 0);
 	}
 
 	@Override
@@ -39,9 +39,9 @@ public class TileLevelTest extends BasicGame {
 		animatedSprite = new TileSprite(1000 , images);
 		sprite1 = new TileSprite(spriteSheet.getTiles()[1][0]);
 		sprite2 = new TileSprite(spriteSheet.getTiles()[1][1]);
-		animatedTile = new BasicTile(0 , animatedSprite , 0xFFFFFF); //White
+		animatedTile = new BasicTile(0 , animatedSprite , -65536); //White
 		tile1 = new BasicTile(1 , sprite1 , 0x000000); //Black
-		tile2 = new BasicTile(1 , sprite2 , 0xFF0000); //paint.net standard red
+		tile2 = new BasicTile(1 , sprite2 , -0); //paint.net standard red
 		Tile tiles[] = {animatedTile , tile1 , tile2};
 
 
@@ -50,6 +50,7 @@ public class TileLevelTest extends BasicGame {
 
 	@Override
 	public void update(GameContainer gc, int DELTA) throws SlickException {
+		level.update(DELTA);
 	}
 	
 	public static void main(String args[]) throws SlickException {
