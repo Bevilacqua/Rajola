@@ -36,7 +36,7 @@ public class TileLevelTest extends BasicGame {
 	@Override
 	public void render(GameContainer gc, Graphics g) throws SlickException {
 		level.renderTiles(this.x, this.y);
-//		animatedTile.render(10, 10);
+		animatedTile.render(10, 10);
 		tile1.render(10, 10);
 	}
 
@@ -45,11 +45,11 @@ public class TileLevelTest extends BasicGame {
 		spriteSheet = new TileSpriteSheet("res/testing.png", 8);
 		images.add(spriteSheet.getTileImage(0, 0));
 		images.add(spriteSheet.getTileImage(0, 1));
-		animatedTile = new BasicTile( 0 , new TileSprite(1000 , images) , 0xFF0000);
-		tile1 = new BasicTile(1 , new TileSprite(spriteSheet.getTileImage(1, 0)) , 0x000000);
+		animatedTile = new BasicTile( 1 , new TileSprite(1000 , images) , 0xFF0000);
+		tile1 = new BasicTile(0 , new TileSprite(spriteSheet.getTileImage(1, 0)) , 0x000000);
 		tile2 = new BasicTile(2 , new TileSprite(spriteSheet.getTileImage(1,1)), 0xFFFFFF);
 		
-		Tile tiles[] = {animatedTile , tile1 , tile2};
+		Tile tiles[] = { tile1 ,animatedTile , tile2};
 
 
 		level = new TileLevel("res/levelTest.png" , "Rajola | Test_Level" , tiles);
