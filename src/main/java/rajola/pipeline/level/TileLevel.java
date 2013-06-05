@@ -24,6 +24,7 @@ public class TileLevel {
 	private String identifier;
 	private String path;
 	private Tile[] tileSet; //The position in the tileSet should corespond to the tiles ID
+	private Tile nullTile; //TODO: Create a nullTile
 	
 	private int xOffset , yOffset;
 	private int shiftCount;
@@ -95,7 +96,7 @@ public class TileLevel {
 	
 	  public Tile getTile(int x, int y) {
 	        if (0 > x || x >= screenWidth || 0 > y || y >= screenHeight) {
-	        	//Return void tile
+	        	return tileSet[0]; //TODO: Change this to return the nullTile.
 	        } else {
 	        	for(int i = 0 ; i < this.tileSet.length ; i++) {
 	        		if(tiles[x + y * width] == this.tileSet[i].getId()) {

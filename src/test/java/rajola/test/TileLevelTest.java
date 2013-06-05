@@ -5,6 +5,7 @@ import org.newdawn.slick.BasicGame;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
+import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 
 import rajola.pipeline.BasicTile;
@@ -23,13 +24,14 @@ public class TileLevelTest extends BasicGame {
 	private BasicTile animatedTile;
 	private BasicTile tile1;
 	private BasicTile tile2;
+	private int x,y;
 	public TileLevelTest() {
 		super("Rajola | TileLevelTest");
 	}
 
 	@Override
 	public void render(GameContainer gc, Graphics g) throws SlickException {
-		level.renderTiles(0, 0);
+		level.renderTiles(this.x, this.y);
 	}
 
 	@Override
@@ -51,11 +53,16 @@ public class TileLevelTest extends BasicGame {
 	@Override
 	public void update(GameContainer gc, int DELTA) throws SlickException {
 		level.update(DELTA);
+		Input input= gc.getInput();
+		if(input.isKeyPressed(Input.KEY_RIGHT) == true) {
+			x--;
+		}
+
 	}
 	
 	public static void main(String args[]) throws SlickException {
 		AppGameContainer apg = new AppGameContainer(new TileLevelTest());
-		apg.setDisplayMode(256, 256, false);
+		apg.setDisplayMode(128, 128, false);
 		apg.start();
 	}
 
