@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset='utf-8'>
+  <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+  <meta name="viewport" content="width=device-width">
+
+  <title>Rajola</title>
+  <base href='.'>
+
+  <!-- Flatdoc -->
+  <script src='support/vendor/jquery.js'></script>
+  <script src='legacy.js'></script>
+  <script src='flatdoc.js'></script>
+
+  <!-- Flatdoc theme -->
+  <link  href='theme-white/style.css' rel='stylesheet'>
+  <script src='theme-white/script.js'></script>
+
+  <!-- Meta -->
+  <meta content="Rajola" property="og:site_name">
+  <meta content="Rajola" property="og:title">
+  <meta content="website" property="og:type">
+
+  <!-- Initializer -->
+  <script>
+    Flatdoc.run({
+      fetcher: Flatdoc.github('Bevilacqua/Rajola')
+    });
+  </script>
+  <style>
+  </style>
+</head>
+<body role='flatdoc'>
+
+  <div class='header'>
+    <div class='left'>
+      <h1><a href='.'>Rajola</a></h1>
+      <ul>
+        <li><a href='https://github.com/Bevilacqua/Rajola'>View on Github</a></li>
+        <li><a href='https://github.com/Bevilacqua/Rajola/issues'>Issues</a></li>
+        <li><a href='https://github.com/Bevilacqua/Rajola/contributors'>Contributors</a></li>
+      </ul>
+    </div>
+    <div class='right'>
+      <iframe src="http://ghbtns.com/github-btn.html?user=Bevilacqua&amp;type=follow&amp;count=true" allowtransparency="true" frameborder="0" scrolling="0" width="170" height="20"></iframe>
+      <iframe src="http://ghbtns.com/github-btn.html?user=Bevilacqua&amp;repo=Rajola&amp;type=watch&amp;count=true" allowtransparency="true" frameborder="0" scrolling="0" width="110" height="20"></iframe>
+    </div>
+  </div>
+
+  <div class='content-root'>
+    <div class='menubar'>
+      <div class='section'>
+        <a class='big button' href='https://github.com/Bevilacqua/Rajola/archive/master.zip' target='_blank'>Download</a>
+      </div>
+      <div class='menu section' role='flatdoc-menu'></div>
+    </div>
+    <div role='flatdoc-content' class='content'></div>
+  </div>
+
+</body>
+</html>
