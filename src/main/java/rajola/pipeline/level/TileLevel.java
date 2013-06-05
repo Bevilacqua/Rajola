@@ -29,6 +29,9 @@ public class TileLevel {
 	private int xOffset , yOffset;
 	private int shiftCount;
 	
+	private int ElapsedTime;
+	private int DELAY;
+	
 	private int[] tiles;
 	private BufferedImage mapImage;
 	
@@ -96,7 +99,7 @@ public class TileLevel {
 	
 	  public Tile getTile(int x, int y) {
 	        if (0 > x || x >= screenWidth || 0 > y || y >= screenHeight) {
-	        	return tileSet[0]; //TODO: Change this to return the nullTile.
+//	        	return tileSet[0]; //TODO: Change this to return the nullTile.
 	        } else {
 	        	for(int i = 0 ; i < this.tileSet.length ; i++) {
 	        		if(tiles[x + y * width] == this.tileSet[i].getId()) {

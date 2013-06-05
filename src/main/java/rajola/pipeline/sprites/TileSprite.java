@@ -48,6 +48,13 @@ public class TileSprite {
 		this.animationSpeed = animationSpeed;
 	}
 	
+	public TileSprite(int animationSpeed , List<Image> image) {
+		frames = image;
+		this.width = image.get(0).getWidth();
+		this.height = image.get(0).getHeight();
+		this.animationSpeed = animationSpeed;
+	}
+	
 	
 	/**
 	 * @param image 2D array of images

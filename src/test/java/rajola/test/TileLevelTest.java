@@ -1,5 +1,8 @@
 package rajola.test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.BasicGame;
 import org.newdawn.slick.GameContainer;
@@ -24,6 +27,7 @@ public class TileLevelTest extends BasicGame {
 	private BasicTile animatedTile;
 	private BasicTile tile1;
 	private BasicTile tile2;
+	private List<Image> images = new ArrayList();
 	private int x,y;
 	public TileLevelTest() {
 		super("Rajola | TileLevelTest");
@@ -32,18 +36,19 @@ public class TileLevelTest extends BasicGame {
 	@Override
 	public void render(GameContainer gc, Graphics g) throws SlickException {
 		level.renderTiles(this.x, this.y);
+//		animatedTile.render(10, 10);
+		tile1.render(10, 10);
 	}
 
 	@Override
 	public void init(GameContainer gc) throws SlickException {
 		spriteSheet = new TileSpriteSheet("res/testing.png", 8);
-		Image images[][] = {{spriteSheet.getTiles()[0][0] , spriteSheet.getTiles()[0][1]}};
-		animatedSprite = new TileSprite(1000 , images);
-		sprite1 = new TileSprite(spriteSheet.getTiles()[1][0]);
-		sprite2 = new TileSprite(spriteSheet.getTiles()[1][1]);
-		animatedTile = new BasicTile(0 , animatedSprite , -65536); //White
-		tile1 = new BasicTile(1 , sprite1 , 0x000000); //Black
-		tile2 = new BasicTile(1 , sprite2 , -0); //paint.net standard red
+		images.add(spriteSheet.getTileImage(0, 0));
+		images.add(spriteSheet.getTileImage(0, 1));
+		animatedTile = new BasicTile( 0 , new TileSprite(1000 , images) , 0xFF0000);
+		tile1 = new BasicTile(1 , new TileSprite(spriteSheet.getTileImage(1, 0)) , 0x000000);
+		tile2 = new BasicTile(2 , new TileSprite(spriteSheet.getTileImage(1,1)), 0xFFFFFF);
+		
 		Tile tiles[] = {animatedTile , tile1 , tile2};
 
 
@@ -53,10 +58,10 @@ public class TileLevelTest extends BasicGame {
 	@Override
 	public void update(GameContainer gc, int DELTA) throws SlickException {
 		level.update(DELTA);
-		Input input= gc.getInput();
-		if(input.isKeyPressed(Input.KEY_RIGHT) == true) {
-			x--;
-		}
+//		Input input= gc.getInput();
+//		if(input.isKeyPressed(Input.KEY_RIGHT) == true) {
+//			x--;
+//		}
 
 	}
 	
