@@ -22,7 +22,7 @@ import rajola.pipeline.tools.ImageTools;
 public class TileLevel {
 
 	private int height , width;
-	private int screenHeight = 256 , screenWidth = 256; //TODO: should be defined by user just for testing
+	private int screenHeight = 128 , screenWidth = 128; //TODO: should be defined by user just for testing
 	private String identifier;
 	private String path;
 	private Tile[] tileSet; //The position in the tileSet should corespond to the tiles ID
@@ -75,7 +75,7 @@ public class TileLevel {
 				int rgb = this.mapImage.getColor(x1, y1).getRed();
 				rgb = (rgb << 8) + this.mapImage.getColor(x1, y1).getGreen();
 				rgb = (rgb << 8) + this.mapImage.getColor(x1, y1).getBlue();
-				tileColors[x1 + y1] = rgb;
+				tileColors[x1 + y1 * width] = rgb;
 			}
 		}
 		
@@ -84,8 +84,8 @@ public class TileLevel {
 			for(int x = 0 ; x < width ; x++) {
 //				System.out.println(tileColors[x+y*width]);
 				tileCheck: for(Tile t : this.tileSet) {
-					if(t != null && t.getLevelColor() == tileColors[x + y ]) {
-						this.tiles[x + y] = t.getId();
+					if(t != null && t.getLevelColor() == tileColors[x + y * width]) {
+						this.tiles[x + y * width] = t.getId();
 //						System.out.println(t.getId());
 						break tileCheck;
 					}
@@ -115,7 +115,7 @@ public class TileLevel {
 	        	return null; //TODO: Change this to return the nullTile.
 	        } else {
 	        	for(int i = 0 ; i < this.tileSet.length ; i++) {
-	        		if(tiles[x + y] == this.tileSet[i].getId()) {
+	        		if(tiles[x + y * width] == this.tileSet[i].getId()) {
 	        			return this.tileSet[i];
 	        		}
 	        	}
