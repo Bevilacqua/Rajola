@@ -5,7 +5,10 @@ import java.io.File;
 
 import javax.imageio.ImageIO;
 
+import org.newdawn.slick.Image;
+
 import rajola.pipeline.Tile;
+import rajola.pipeline.tools.ImageTools;
 
 /**
  * 
@@ -33,7 +36,7 @@ public class TileLevel {
 	private int DELAY;
 	
 	private int[] tiles;
-	private BufferedImage mapImage;
+	private Image mapImage;
 	
 	public TileLevel() {}
 	
@@ -56,7 +59,7 @@ public class TileLevel {
 	
 	public void loadLevelFromFile() {
 		try {
-			this.mapImage = ImageIO.read(new File(path));
+			this.mapImage = ImageTools.toSlickImage(ImageIO.read(new File(path)));
 			this.width = this.mapImage.getWidth();
 			this.height = this.mapImage.getHeight();
 			tiles = new int[width * height];
@@ -67,10 +70,20 @@ public class TileLevel {
 		}
 	}
 
-	private void loadTiles() {
-		int tileColors[] = this.mapImage.getRGB(0, 0, width, height, null, 0, width);
+	private void loadTiles() { 
+		int tileColors[] = new int[mapImage.getHeight() * mapImage.getWidth()];
+		
+		//This double forloop populates the tileColors array
+		for(int y1 = 0 ; y1 < this.height ; y1++) {
+			for(int x1 = 0 ; x1 < this.width ; x1++) {
+				tileColors[x1 + y1 * width] = this.mapImage.getColor(x1, y1); //TODO: convert color data to RGB hex value
+			}
+		}
+		
+		//This double forloop looks through the tileColors array and creates an array of tiles
 		for(int y = 0 ; y < height ; y++) {
 			for(int x = 0 ; x < width ; x++) {
+				System.out.println(tileColors[x+y*width]);
 				tileCheck: for(Tile t : this.tileSet) {
 					if(t != null && t.getLevelColor() == tileColors[x + y * width]) {
 						this.tiles[x + y * width] = t.getId();
