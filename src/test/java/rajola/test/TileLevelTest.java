@@ -57,8 +57,9 @@ public class TileLevelTest extends BasicGame {
 	public void update(GameContainer gc, int DELTA) throws SlickException {
 		level.update(DELTA);
 		Input input= gc.getInput();
-		if(input.isKeyPressed(Input.KEY_RIGHT) == true) {
-			x--;
+		if(input.isKeyPressed(Input.KEY_W) == true) {
+			this.x++;
+			this.y++;
 		}
 
 	}
