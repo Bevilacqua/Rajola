@@ -47,7 +47,6 @@ public abstract class Tile {
 		if(elapsedTime < this.sprite.getAnimationSpeed()) {
 			elapsedTime += d;
 		} else {
-			System.out.println("updated");
 			if(this.sprite.getCurrentFrame() < this.sprite.getFrames().size() - 1) this.sprite.incrementFrame();
 			else this.sprite.setCurrentFrame(0);
 			elapsedTime = 0;

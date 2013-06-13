@@ -1,6 +1,5 @@
 package rajola.pipeline.level;
 
-import java.awt.image.BufferedImage;
 import java.io.File;
 
 import javax.imageio.ImageIO;
@@ -32,12 +31,9 @@ public class TileLevel {
 	private int xOffset , yOffset;
 	private int shiftCount;
 	
-	private int ElapsedTime;
-	private int DELAY;
-	
 	private int[] tiles;
 	private Image mapImage;
-	
+		
 	public TileLevel() {}
 	
 	public TileLevel(String imagePath) {
@@ -79,17 +75,18 @@ public class TileLevel {
 				int rgb = this.mapImage.getColor(x1, y1).getRed();
 				rgb = (rgb << 8) + this.mapImage.getColor(x1, y1).getGreen();
 				rgb = (rgb << 8) + this.mapImage.getColor(x1, y1).getBlue();
-				tileColors[x1 + y1 * width] = rgb; //TODO: convert color data to RGB hex value
+				tileColors[x1 + y1] = rgb;
 			}
 		}
 		
 		//This double forloop looks through the tileColors array and creates an array of tiles
 		for(int y = 0 ; y < height ; y++) {
 			for(int x = 0 ; x < width ; x++) {
-				System.out.println(tileColors[x+y*width]);
+//				System.out.println(tileColors[x+y*width]);
 				tileCheck: for(Tile t : this.tileSet) {
-					if(t != null && t.getLevelColor() == tileColors[x + y * width]) {
-						this.tiles[x + y * width] = t.getId();
+					if(t != null && t.getLevelColor() == tileColors[x + y ]) {
+						this.tiles[x + y] = t.getId();
+//						System.out.println(t.getId());
 						break tileCheck;
 					}
 				}
@@ -101,10 +98,10 @@ public class TileLevel {
 		int tileSize = this.tileSet[0].getSprite().getHeight();
 		setOffset(xOffset , yOffset);
 		
-		int x0 = xOffset >> this.shiftCount;
-		int x1 = (xOffset + screenWidth + tileSize) >> this.shiftCount;
-		int y0 = yOffset >> this.shiftCount;
-		int y1 = (yOffset + screenHeight + tileSize) >> this.shiftCount;
+		int x0 = this.xOffset >> this.shiftCount;
+		int x1 = (this.xOffset + screenWidth + tileSize) >> this.shiftCount;
+		int y0 = this.yOffset >> this.shiftCount;
+		int y1 = (this.yOffset + screenHeight + tileSize) >> this.shiftCount;
 
 		for (int y = y0; y < y1; y++) {
 			for (int x = x0; x < x1; x++) {
@@ -115,10 +112,10 @@ public class TileLevel {
 	
 	  public Tile getTile(int x, int y) {
 	        if (0 > x || x >= screenWidth || 0 > y || y >= screenHeight) {
-	        	return tileSet[0]; //TODO: Change this to return the nullTile.
+	        	return null; //TODO: Change this to return the nullTile.
 	        } else {
 	        	for(int i = 0 ; i < this.tileSet.length ; i++) {
-	        		if(tiles[x + y * width] == this.tileSet[i].getId()) {
+	        		if(tiles[x + y] == this.tileSet[i].getId()) {
 	        			return this.tileSet[i];
 	        		}
 	        	}

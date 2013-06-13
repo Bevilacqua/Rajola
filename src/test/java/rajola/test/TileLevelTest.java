@@ -36,8 +36,6 @@ public class TileLevelTest extends BasicGame {
 	@Override
 	public void render(GameContainer gc, Graphics g) throws SlickException {
 		level.renderTiles(this.x, this.y);
-		animatedTile.render(10, 10);
-		tile1.render(10, 10);
 	}
 
 	@Override
@@ -58,10 +56,10 @@ public class TileLevelTest extends BasicGame {
 	@Override
 	public void update(GameContainer gc, int DELTA) throws SlickException {
 		level.update(DELTA);
-//		Input input= gc.getInput();
-//		if(input.isKeyPressed(Input.KEY_RIGHT) == true) {
-//			x--;
-//		}
+		Input input= gc.getInput();
+		if(input.isKeyPressed(Input.KEY_RIGHT) == true) {
+			x--;
+		}
 
 	}
 	
