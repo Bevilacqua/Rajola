@@ -76,7 +76,10 @@ public class TileLevel {
 		//This double forloop populates the tileColors array
 		for(int y1 = 0 ; y1 < this.height ; y1++) {
 			for(int x1 = 0 ; x1 < this.width ; x1++) {
-				tileColors[x1 + y1 * width] = this.mapImage.getColor(x1, y1); //TODO: convert color data to RGB hex value
+				int rgb = this.mapImage.getColor(x1, y1).getRed();
+				rgb = (rgb << 8) + this.mapImage.getColor(x1, y1).getGreen();
+				rgb = (rgb << 8) + this.mapImage.getColor(x1, y1).getBlue();
+				tileColors[x1 + y1 * width] = rgb; //TODO: convert color data to RGB hex value
 			}
 		}
 		
