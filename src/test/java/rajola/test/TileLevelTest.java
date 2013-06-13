@@ -65,7 +65,7 @@ public class TileLevelTest extends BasicGame {
 	
 	public static void main(String args[]) throws SlickException {
 		AppGameContainer apg = new AppGameContainer(new TileLevelTest());
-		apg.setDisplayMode(128, 128, false);
+		apg.setDisplayMode(256, 256, false);
 		apg.start();
 	}
 

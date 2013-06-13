@@ -86,7 +86,7 @@ public class TileLevel {
 				tileCheck: for(Tile t : this.tileSet) {
 					if(t != null && t.getLevelColor() == tileColors[x + y * width]) {
 						this.tiles[x + y * width] = t.getId();
-//						System.out.println(t.getId());
+						System.out.println(t.getId());
 						break tileCheck;
 					}
 				}
@@ -112,7 +112,7 @@ public class TileLevel {
 	
 	  public Tile getTile(int x, int y) {
 	        if (0 > x || x >= screenWidth || 0 > y || y >= screenHeight) {
-	        	return null; //TODO: Change this to return the nullTile.
+	        	return tileSet[1]; //TODO: Change this to return the nullTile.
 	        } else {
 	        	for(int i = 0 ; i < this.tileSet.length ; i++) {
 	        		if(tiles[x + y * width] == this.tileSet[i].getId()) {
