@@ -29,6 +29,8 @@ public class TileLevelTest extends BasicGame {
 	private BasicTile tile2;
 	private List<Image> images = new ArrayList();
 	private int x,y;
+	private BasicTile nullTile;
+	private TileSpriteSheet nullspriteSheet;
 	public TileLevelTest() {
 		super("Rajola | TileLevelTest");
 	}
@@ -41,11 +43,13 @@ public class TileLevelTest extends BasicGame {
 	@Override
 	public void init(GameContainer gc) throws SlickException {
 		spriteSheet = new TileSpriteSheet("res/testing.png", 8);
+		nullspriteSheet = new TileSpriteSheet("res/nullTile.png" , 8);
 		images.add(spriteSheet.getTileImage(0, 0));
 		images.add(spriteSheet.getTileImage(0, 1));
 		animatedTile = new BasicTile( 0 , new TileSprite(1000 , images) , 0xFFFFFF);
 		tile1 = new BasicTile(1 , new TileSprite(spriteSheet.getTileImage(1, 0)) , 0xFF0000);
 		tile2 = new BasicTile(2 , new TileSprite(spriteSheet.getTileImage(1,1)), 0x000000);
+		nullTile = new BasicTile(3 , new TileSprite(spriteSheet.getTileImage(0, 0)) , 0xAAAAAA);
 		
 		Tile tiles[] = { animatedTile, tile1 , tile2};
 
