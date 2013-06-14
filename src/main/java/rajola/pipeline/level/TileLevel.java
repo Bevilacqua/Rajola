@@ -46,9 +46,11 @@ public class TileLevel {
 		this.loadLevelFromFile();
 	}
 	
-	public TileLevel(String imagePath , String identifier , Tile[] tileSet) {
+	public TileLevel(String imagePath , String identifier , Tile[] tileSet , int screenSize) {
 		this.path = imagePath;
 		this.tileSet = tileSet;
+		this.screenHeight = screenSize;
+		this.screenWidth = screenSize;
 		this.identifier = identifier;
 		this.loadLevelFromFile();
 	}
@@ -161,6 +163,14 @@ public class TileLevel {
 	
 	public void setTileSet(Tile[] tileSet) {
 		this.tileSet = tileSet;
+	}
+	
+	public void setScreenHeight(int screenHeight) {
+		this.screenHeight = screenHeight;
+	}
+	
+	public void setScreenWidth(int screenWidth) {
+		this.screenWidth = screenWidth;
 	}
 
 	public void update(int DELTA) {

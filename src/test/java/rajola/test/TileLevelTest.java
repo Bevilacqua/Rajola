@@ -50,7 +50,7 @@ public class TileLevelTest extends BasicGame {
 		Tile tiles[] = { animatedTile, tile1 , tile2};
 
 
-		level = new TileLevel("res/levelTest.png" , "Rajola | Test_Level" , tiles);
+		level = new TileLevel("res/levelTest.png" , "Rajola | Test_Level" , tiles , 256);
 	}
 
 	@Override
