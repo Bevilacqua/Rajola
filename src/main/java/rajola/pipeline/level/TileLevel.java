@@ -22,7 +22,7 @@ import rajola.pipeline.tools.ImageTools;
 public class TileLevel {
 
 	private int height , width;
-	private int screenHeight = 128 , screenWidth = 128; //TODO: should be defined by user just for testing
+	private int screenHeight = 256 , screenWidth = 256; //TODO: should be defined by user just for testing
 	private String identifier;
 	private String path;
 	private Tile[] tileSet; //The position in the tileSet should corespond to the tiles ID
