@@ -81,6 +81,10 @@ public abstract class Tile {
 		return this.sprite;
 	}
 	
+	public void setId(int id) {
+		this.id = id;
+	}
+	
 	/**
 	 * @param sprite the Tile sprite image
 	 */
