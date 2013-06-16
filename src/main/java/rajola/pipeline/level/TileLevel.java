@@ -37,7 +37,7 @@ private int shiftCount; //The amount of bitshifts it takes to get the size of th
 private List<Tile> tileSet = new ArrayList<Tile>(); //Collection of tiles to be used
 private Tile nullTile; //This is not to be used anywhere but the constructor use the tile list instead to access this tile
 private int nullTileID; //the tileID of the nullTile
-private Object xOffset;
+private int xOffset;
 private int yOffset;
 	
 	public TileLevel(Tile[] tileSet , int screenHeight , int screenWidth , String mapImagePath , Tile nullTile) {
@@ -55,6 +55,7 @@ private int yOffset;
 		this.tileSet.add(nullTile);
 		this.mapImagePath = mapImagePath;
 		loadImage(this.mapImagePath);
+		fillTile();
 		this.shiftCount = ImageTools.shiftCounter(this.tileSet.get(0).getSize());
 	}
 
@@ -116,7 +117,7 @@ private int yOffset;
  * 2.Render
  */
 
-	public void Update(int DELTA , int XOffset , int yOffset) {
+	public void Update(int DELTA , int xOffset , int yOffset) {
 		for(int i = 0 ; i < this.tileSet.size() ; i++ ) {
 			this.tileSet.get(i).update(DELTA);
 		}
@@ -124,7 +125,14 @@ private int yOffset;
 		this.yOffset = yOffset;
 	}
 	
-	public void Render() {}
+	public void Render() {
+		for(int x = 0 ; x < this.mapImageWidth ; x++ ) {
+			for(int y = 0 ; y < this.mapImageHeight ; y++) {
+				this.tileMap[x + y * this.mapImageWidth].render(x , y);
+				System.out.println(x << this.shiftCount);
+			}
+		}
+	}
 
 }
 

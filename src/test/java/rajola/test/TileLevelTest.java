@@ -37,7 +37,7 @@ public class TileLevelTest extends BasicGame {
 
 	@Override
 	public void render(GameContainer gc, Graphics g) throws SlickException {
-		level.renderTiles(this.x, this.y);
+		level.Render();
 	}
 
 	@Override
@@ -54,13 +54,13 @@ public class TileLevelTest extends BasicGame {
 		Tile tiles[] = { animatedTile, tile1 , tile2};
 
 
-		level = new TileLevel("res/levelTest.png" , "Rajola | Test_Level" , tiles , 256);
+		level = new TileLevel(tiles , 256 , 256 , "res/levelTest.png" , nullTile);
 	}
 
 	@Override
 	public void update(GameContainer gc, int DELTA) throws SlickException {
-		level.update(DELTA);
 		Input input= gc.getInput();
+		level.Update(DELTA, 0, 0);
 		if(input.isKeyPressed(Input.KEY_W) == true) {
 			this.x--;
 			this.y--;
