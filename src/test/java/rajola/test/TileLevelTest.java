@@ -61,10 +61,11 @@ public class TileLevelTest extends BasicGame {
 	public void update(GameContainer gc, int DELTA) throws SlickException {
 		Input input= gc.getInput();
 		level.Update(DELTA, x, y);
-		if(input.isKeyDown(Input.KEY_LEFT)) x++;
-		if(input.isKeyDown(Input.KEY_RIGHT)) x--;
-		if(input.isKeyDown(Input.KEY_DOWN)) y--;
-		if(input.isKeyDown(Input.KEY_UP)) y++;
+		
+		if(input.isKeyDown(Input.KEY_LEFT) && x < 0) x++;
+		if(input.isKeyDown(Input.KEY_RIGHT) && x > -32) x--;
+		if(input.isKeyDown(Input.KEY_DOWN) && y > -32) y--;
+		if(input.isKeyDown(Input.KEY_UP) && y < 0) y++;
 		System.out.println(x + " | " + y);
 			
 
