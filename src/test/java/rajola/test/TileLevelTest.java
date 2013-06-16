@@ -63,8 +63,8 @@ public class TileLevelTest extends BasicGame {
 		level.Update(DELTA, x, y);
 		
 		if(input.isKeyDown(Input.KEY_LEFT) && x < 0) x++;
-		if(input.isKeyDown(Input.KEY_RIGHT) && x > -32) x--;
-		if(input.isKeyDown(Input.KEY_DOWN) && y > -32) y--;
+		if(input.isKeyDown(Input.KEY_RIGHT) && x > -256) x--;
+		if(input.isKeyDown(Input.KEY_DOWN) && y > -256) y--;
 		if(input.isKeyDown(Input.KEY_UP) && y < 0) y++;
 		System.out.println(x + " | " + y);
 			
