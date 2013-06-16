@@ -7,6 +7,8 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.opengl.Texture;
 import org.newdawn.slick.util.BufferedImageUtil;
 
+import rajola.pipeline.Tile;
+
 public class ImageTools {
 
 	//All Tools should be referenced in a static manor
@@ -23,6 +25,19 @@ public class ImageTools {
 			e.printStackTrace();
 		}
 		return new Image(tex);
+	}
+	
+	public static int shiftCounter(int original) {
+		int hold = original;
+		int shifts = 0;
+		for(shifts = 0 ; shifts < original ; shifts++ ) {
+			hold /= 2;
+			if(hold <= 1) {
+				shifts++;
+				return shifts; 
+			}
+		}
+		return -1; //Error
 	}
 	
 }

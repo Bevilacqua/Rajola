@@ -9,12 +9,14 @@ public abstract class Tile {
 	private TileSprite sprite;
 	private int elapsedTime;
 	private int mapColor; //a map color of -1 signifies the use of TileMap, TileMapLayer instead of TileLevel
+	private int size; //Tiles must be a square
 	
 	public Tile(int id ,TileSprite sprite) {
 		this.id = id;
 		this.solid = false;
 		this.sprite = sprite;
 		this.mapColor = -1;
+		this.size = sprite.getHeight();
 	}
 	
 	public Tile(int id ,TileSprite sprite , boolean solid) {
@@ -22,6 +24,7 @@ public abstract class Tile {
 		this.sprite = sprite;
 		this.solid = solid;
 		this.mapColor = -1;
+		this.size = sprite.getHeight();
 	}
 	
 	public Tile(int id , TileSprite sprite , boolean solid , int mapColor) {
@@ -32,6 +35,7 @@ public abstract class Tile {
 	public Tile(int id , TileSprite sprite , int mapColor) {
 		this(id , sprite);
 		this.mapColor = mapColor;
+		this.size = sprite.getHeight();
 	}
 	
 	/**
@@ -102,6 +106,10 @@ public abstract class Tile {
 
 	public int getLevelColor() {
 		return mapColor;
+	}
+	
+	public int getSize() {
+		return this.size;
 	}
 
 }

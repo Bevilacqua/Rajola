@@ -7,6 +7,7 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
 import rajola.pipeline.Tile;
+import rajola.pipeline.tools.ImageTools;
 
 /**
  * 
@@ -19,18 +20,25 @@ import rajola.pipeline.Tile;
  */
 
 public class TileLevel {
-int screenHeight;
-int screenWidth;
+private int screenHeight;
+private int screenWidth;
 
-String mapImagePath;
-int mapImageHeight;
-int mapImageWidth;
-Image mapImage;
-int[] pixelsOnMapImage; //The pixels of mapImage
+private String mapImagePath;
+private int mapImageHeight;
+private int mapImageWidth;
+private Image mapImage;
+private int[] pixelsOnMapImage; //The pixels of mapImage
 
-List<Tile> tileSet = new ArrayList<Tile>(); //Collection of tiles to be used
-Tile nullTile; //This is not to be used anywhere but the constructor use the tile list instead to access this tile
-int nullTileID; //the tileID of the nullTile
+private int[] tileIdMap; //Shouldn't need to be used
+private Tile[] tileMap;
+
+private int shiftCount; //The amount of bitshifts it takes to get the size of the tile back to 1px
+
+private List<Tile> tileSet = new ArrayList<Tile>(); //Collection of tiles to be used
+private Tile nullTile; //This is not to be used anywhere but the constructor use the tile list instead to access this tile
+private int nullTileID; //the tileID of the nullTile
+private Object xOffset;
+private int yOffset;
 	
 	public TileLevel(Tile[] tileSet , int screenHeight , int screenWidth , String mapImagePath , Tile nullTile) {
 		this.screenHeight = screenHeight;
@@ -47,6 +55,7 @@ int nullTileID; //the tileID of the nullTile
 		this.tileSet.add(nullTile);
 		this.mapImagePath = mapImagePath;
 		loadImage(this.mapImagePath);
+		this.shiftCount = ImageTools.shiftCounter(this.tileSet.get(0).getSize());
 	}
 
 	private void loadImage(String mapImagePath) {
@@ -68,4 +77,55 @@ int nullTileID; //the tileID of the nullTile
 			}
 		}
 	}
+	
+	/*
+	 * Populates the tileIdMap & tileMap
+	 */
+	private void fillTile() {
+		this.tileIdMap = new int[this.pixelsOnMapImage.length];
+		this.tileMap = new Tile[this.pixelsOnMapImage.length];
+		
+		for(int index = 0 ; index < this.tileIdMap.length ; index++) {
+			this.tileIdMap[index] = -1;
+		}
+		
+		for(int i = 0 ; i < this.pixelsOnMapImage.length ; i++) {
+			for(int currentTileID = 0 ; currentTileID < this.tileSet.size() ; currentTileID++) {
+				if(this.pixelsOnMapImage[i] == this.tileSet.get(currentTileID).getLevelColor()) {
+					this.tileIdMap[i] = this.tileSet.get(currentTileID).getId();
+					break;
+				}
+			}
+			if(this.tileIdMap[i] == -1) this.tileIdMap[i] = this.nullTileID;
+		}
+		
+		for(int i = 0 ; i < this.tileMap.length ; i++) {
+			for(int currentTile = 0 ; currentTile < this.tileSet.size() ; currentTile++) {
+				if(this.tileIdMap[i] == this.tileSet.get(currentTile).getId()) {
+					this.tileMap[i] = this.tileSet.get(currentTile);
+					break;
+				}
+			}
+		}
+	}
+
+
+/*All methods below are part of the TileLevel workflow
+ * Workflow:
+ * 1.Update
+ * 2.Render
+ */
+
+	public void Update(int DELTA , int XOffset , int yOffset) {
+		for(int i = 0 ; i < this.tileSet.size() ; i++ ) {
+			this.tileSet.get(i).update(DELTA);
+		}
+		this.xOffset = xOffset;
+		this.yOffset = yOffset;
+	}
+	
+	public void Render() {}
+
 }
+
+//All methods below are getters and setters
