@@ -128,8 +128,7 @@ private int yOffset;
 	public void Render() {
 		for(int x = 0 ; x < this.mapImageWidth ; x++ ) {
 			for(int y = 0 ; y < this.mapImageHeight ; y++) {
-				this.tileMap[x + y * this.mapImageWidth].render(x , y);
-				System.out.println(x << this.shiftCount);
+				this.tileMap[x + y * this.mapImageWidth].render((x + xOffset) << this.shiftCount , (y + yOffset) << this.shiftCount);
 			}
 		}
 	}

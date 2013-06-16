@@ -30,7 +30,7 @@ public class TileLevelTest extends BasicGame {
 	private List<Image> images = new ArrayList();
 	private int x,y;
 	private BasicTile nullTile;
-	private TileSpriteSheet nullspriteSheet;
+	private TileSpriteSheet nullSpriteSheet;
 	public TileLevelTest() {
 		super("Rajola | TileLevelTest");
 	}
@@ -43,13 +43,13 @@ public class TileLevelTest extends BasicGame {
 	@Override
 	public void init(GameContainer gc) throws SlickException {
 		spriteSheet = new TileSpriteSheet("res/testing.png", 8);
-		nullspriteSheet = new TileSpriteSheet("res/nullTile.png" , 8);
+		nullSpriteSheet = new TileSpriteSheet("res/nullTile.png" , 8);
 		images.add(spriteSheet.getTileImage(0, 0));
 		images.add(spriteSheet.getTileImage(0, 1));
 		animatedTile = new BasicTile( 0 , new TileSprite(1000 , images) , 0xFFFFFF);
 		tile1 = new BasicTile(1 , new TileSprite(spriteSheet.getTileImage(1, 0)) , 0xFF0000);
 		tile2 = new BasicTile(2 , new TileSprite(spriteSheet.getTileImage(1,1)), 0x000000);
-		nullTile = new BasicTile(3 , new TileSprite(spriteSheet.getTileImage(0, 0)) , 0xAAAAAA);
+		nullTile = new BasicTile(3 , new TileSprite(nullSpriteSheet.getTileImage(0, 0)) , 0xAAAAAA);
 		
 		Tile tiles[] = { animatedTile, tile1 , tile2};
 
@@ -60,17 +60,20 @@ public class TileLevelTest extends BasicGame {
 	@Override
 	public void update(GameContainer gc, int DELTA) throws SlickException {
 		Input input= gc.getInput();
-		level.Update(DELTA, 0, 0);
-		if(input.isKeyPressed(Input.KEY_W) == true) {
-			this.x--;
-			this.y--;
-		}
+		level.Update(DELTA, x, y);
+		if(input.isKeyDown(Input.KEY_LEFT)) x++;
+		if(input.isKeyDown(Input.KEY_RIGHT)) x--;
+		if(input.isKeyDown(Input.KEY_DOWN)) y--;
+		if(input.isKeyDown(Input.KEY_UP)) y++;
+		System.out.println(x + " | " + y);
+			
 
 	}
 	
 	public static void main(String args[]) throws SlickException {
 		AppGameContainer apg = new AppGameContainer(new TileLevelTest());
 		apg.setDisplayMode(256, 256, false);
+		apg.setShowFPS(false);
 		apg.start();
 	}
 
