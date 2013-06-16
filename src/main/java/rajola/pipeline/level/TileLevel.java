@@ -20,8 +20,6 @@ import rajola.pipeline.tools.ImageTools;
  */
 
 public class TileLevel {
-private int screenHeight;
-private int screenWidth;
 
 private String mapImagePath;
 private int mapImageHeight;
@@ -40,10 +38,7 @@ private int nullTileID; //the tileID of the nullTile
 private int xOffset;
 private int yOffset;
 	
-	public TileLevel(Tile[] tileSet , int screenHeight , int screenWidth , String mapImagePath , Tile nullTile) {
-		this.screenHeight = screenHeight;
-		this.screenWidth = screenWidth;
-		
+	public TileLevel(Tile[] tileSet , int screenHeight , int screenWidth , String mapImagePath , Tile nullTile) {	
 		this.nullTile = nullTile;
 		
 		for(int i = 0 ; i < tileSet.length ; i++) {
@@ -133,6 +128,6 @@ private int yOffset;
 		}
 	}
 
-}
 
 //All methods below are getters and setters
+}

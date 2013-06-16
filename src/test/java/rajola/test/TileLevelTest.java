@@ -51,7 +51,7 @@ public class TileLevelTest extends BasicGame {
 		tile2 = new BasicTile(2 , new TileSprite(spriteSheet.getTileImage(1,1)), 0x000000);
 		nullTile = new BasicTile(3 , new TileSprite(nullSpriteSheet.getTileImage(0, 0)) , 0xAAAAAA);
 		
-		Tile tiles[] = { animatedTile, tile1 , tile2};
+		Tile tiles[] = { tile1 , animatedTile , tile2}; //tiles array no longer needs to be in order but it is good convention to do it in order of increasing tileID
 
 
 		level = new TileLevel(tiles , 256 , 256 , "res/levelTest.png" , nullTile);
@@ -62,10 +62,10 @@ public class TileLevelTest extends BasicGame {
 		Input input= gc.getInput();
 		level.Update(DELTA, x, y);
 		
-		if(input.isKeyDown(Input.KEY_LEFT) && x < 0) x++;
-		if(input.isKeyDown(Input.KEY_RIGHT) && x > -256) x--;
-		if(input.isKeyDown(Input.KEY_DOWN) && y > -256) y--;
-		if(input.isKeyDown(Input.KEY_UP) && y < 0) y++;
+		if(input.isKeyDown(Input.KEY_LEFT) && x < 0) x+=4;
+		if(input.isKeyDown(Input.KEY_RIGHT) && x > -256) x-=4;
+		if(input.isKeyDown(Input.KEY_DOWN) && y > -256) y-=4;
+		if(input.isKeyDown(Input.KEY_UP) && y < 0) y+=4;
 		System.out.println(x + " | " + y);
 			
 
