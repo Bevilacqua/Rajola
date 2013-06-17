@@ -21,6 +21,25 @@ Here are few functionalities that are (or will) be included:
 -    **Sprite :** represents _Tile_ image, can be animated
 -    **TileSpriteSheet :** a sprite sheet from wich images can be used in a _TileMap_ layer
 
+## Compiling
+
+An `ant` script lives in the root of the repo named `build.xml` just run it form the command line using
+
+```
+$ ant
+```
+
+or run it in **eclipse**
+
+the resulting **jar** will be located at `build/jar/rajola.jar`
+
+<hr/>
+
+Two other ant commands are also available:
+
+* `ant clean` removes the **build** directory
+* `ant compile` compiles the `.java` files to `.class` files in the `build/classes` directory
+
 ## Contributing
 
 The more we are, the more fun we have.
