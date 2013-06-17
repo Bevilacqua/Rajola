@@ -38,7 +38,7 @@ private int nullTileID; //the tileID of the nullTile
 private int xOffset;
 private int yOffset;
 	
-	public TileLevel(Tile[] tileSet , int screenHeight , int screenWidth , String mapImagePath , Tile nullTile) {	
+	public TileLevel(Tile[] tileSet, String mapImagePath , Tile nullTile) {	
 		this.nullTile = nullTile;
 		
 		for(int i = 0 ; i < tileSet.length ; i++) {

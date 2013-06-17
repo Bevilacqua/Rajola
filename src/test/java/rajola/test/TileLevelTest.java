@@ -58,7 +58,7 @@ public class TileLevelTest extends BasicGame {
 		
 		Tile tiles[] = { tile1 , animatedTile , tile2 , cloudAnimatedTile}; //tiles array no longer needs to be in order but it is good convention to do it in order of increasing tileID
 
-		level = new TileLevel(tiles , 256 , 256 , "res/levelTest.png" , nullTile);
+		level = new TileLevel(tiles , "res/levelTest.png" , nullTile);
 	}
 
 	@Override
@@ -77,7 +77,7 @@ public class TileLevelTest extends BasicGame {
 	
 	public static void main(String args[]) throws SlickException {
 		AppGameContainer apg = new AppGameContainer(new TileLevelTest());
-		apg.setDisplayMode(256, 256, false);
+		apg.setDisplayMode(512, 512, false);
 		apg.setShowFPS(false);
 		apg.start();
 	}
