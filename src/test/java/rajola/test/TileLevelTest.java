@@ -68,7 +68,7 @@ public class TileLevelTest extends BasicGame {
 		
 		if(input.isKeyDown(Input.KEY_LEFT) && x < 0) x+=4;
 		if(input.isKeyDown(Input.KEY_RIGHT) && x > -1024) x-=4;
-		if(input.isKeyDown(Input.KEY_DOWN) && y > -768) y-=4;
+		if(input.isKeyDown(Input.KEY_DOWN) && y > - 512) y-=4;
 		if(input.isKeyDown(Input.KEY_UP) && y < 0) y+=4;
 		System.out.println(x + " | " + y);
 			
