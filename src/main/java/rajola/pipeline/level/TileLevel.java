@@ -3,6 +3,7 @@ package rajola.pipeline.level;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
@@ -26,6 +27,10 @@ private int mapImageHeight;
 private int mapImageWidth;
 private Image mapImage;
 private int[] pixelsOnMapImage; //The pixels of mapImage
+
+private int screenWidth = 512;
+private int screenHeight = 512;
+GameContainer gc;
 
 private int[] tileIdMap; //Shouldn't need to be used
 private Tile[] tileMap;
@@ -53,6 +58,25 @@ private int yOffset;
 		fillTile();
 		this.shiftCount = ImageTools.shiftCounter(this.tileSet.get(0).getSize());
 	}
+	
+	public TileLevel(Tile[] tileSet, String mapImagePath , Tile nullTile , GameContainer gc) {
+	this.nullTile = nullTile;
+		
+		for(int i = 0 ; i < tileSet.length ; i++) {
+			this.tileSet.add(tileSet[i]);
+		}
+		//The next three lines set the null tile's id to one larger than the last tile in the tileSet then adds the null tile to the tileSet
+		this.nullTile.setId((this.tileSet.size() + 1));
+		this.nullTileID = (nullTile.getId());
+		this.tileSet.add(nullTile);
+		this.mapImagePath = mapImagePath;
+		loadImage(this.mapImagePath);
+		fillTile();
+		this.shiftCount = ImageTools.shiftCounter(this.tileSet.get(0).getSize());
+		this.screenHeight = gc.getScreenHeight();
+		this.screenWidth = gc.getScreenWidth();
+	}
+
 
 	private void loadImage(String mapImagePath) {
 		try {
