@@ -160,4 +160,7 @@ private int yOffset;
 	public int getYOffset() {
 		return this.yOffset;
 	}
+	public Tile getTileAt(int x , int y) {
+		return this.tileMap[((x + xOffset >> this.shiftCount + y + yOffset >> this.shiftCount )* this.mapImageWidth >> this.shiftCount)];
+	}
 }
