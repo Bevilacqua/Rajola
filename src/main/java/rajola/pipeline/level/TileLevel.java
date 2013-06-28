@@ -130,4 +130,10 @@ private int yOffset;
 
 
 //All methods below are getters and setters
+	public int getXOffset() {
+		return this.xOffset;
+	}
+	public int getYOffset() {
+		return this.yOffset;
+	}
 }
