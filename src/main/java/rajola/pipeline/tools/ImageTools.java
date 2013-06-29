@@ -2,6 +2,8 @@ package rajola.pipeline.tools;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.newdawn.slick.Image;
 import org.newdawn.slick.opengl.Texture;
@@ -39,5 +41,17 @@ public class ImageTools {
 		}
 		return -1; //Error
 	}
+	
+	/*
+	 * Creates a list of images to be used in creating an animated sprite
+	 */
+	private static List<Image> imageListCreator(Image... imgs) {
+		List<Image> images = new ArrayList<Image>();
+		for(Image image : imgs) {
+			images.add(image);
+		}
+		return images;
+	}
+
 	
 }
