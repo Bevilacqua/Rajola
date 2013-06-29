@@ -161,6 +161,18 @@ private int yOffset;
 		return this.yOffset;
 	}
 	public Tile getTileAt(int x , int y) {
-		return this.tileMap[((x + xOffset >> this.shiftCount + y + yOffset >> this.shiftCount )* this.mapImageWidth >> this.shiftCount)];
+		return this.tileMap[( (-this.xOffset + x) >> this.shiftCount )+ ( ((-this.yOffset + y) >> this.shiftCount )  * this.mapImageWidth)];
+	}
+	public Tile[] getTileMap() {
+		return this.tileMap;
+	}
+	public int getWidth() {
+		return this.mapImageWidth >> this.shiftCount;
+	}
+	public int getHeight() {
+		return this.mapImageHeight >> this.shiftCount;
+	}
+	public int getShiftCount() {
+		return this.shiftCount;
 	}
 }
