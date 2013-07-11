@@ -45,7 +45,7 @@ public class ImageTools {
 	/*
 	 * Creates a list of images to be used in creating an animated sprite
 	 */
-	private static List<Image> imageListCreator(Image... imgs) {
+	public static List<Image> imageListCreator(Image... imgs) {
 		List<Image> images = new ArrayList<Image>();
 		for(Image image : imgs) {
 			images.add(image);
