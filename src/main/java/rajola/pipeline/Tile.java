@@ -41,15 +41,20 @@ public abstract class Tile {
 	/**
 	 * @param x the location to draw the tile
 	 * @param y the location to draw the tile
-	 * To be used in debugging
+	 * Render the tile at the specified location.
+	 * Not to be called directly by the developer.
 	 */
 	public void render(int x , int y) {
 		sprite.render(x, y);
 	} 
 	
-	public void update(int d) {		
+	/**
+	 * @param delta the delta variable to be used in animation
+	 * Update the tile's animation loop
+	 */
+	public void update(int delta) {		
 		if(elapsedTime < this.sprite.getAnimationSpeed()) {
-			elapsedTime += d;
+			elapsedTime += delta;
 		} else {
 			if(this.sprite.getCurrentFrame() < this.sprite.getFrames().size() - 1) this.sprite.incrementFrame();
 			else this.sprite.setCurrentFrame(0);
@@ -59,9 +64,19 @@ public abstract class Tile {
 	
 	/**
 	 * @return the tiles id;
+	 * Returns the tile id.
 	 */
 	public int getId() {
 		return this.id;
+	}
+	
+	/**
+	 * @param tile the tile to be tested
+	 * @return the specified tile's id.
+	 */
+	public static int getId(Tile tile) {
+		return tile.getId();
+		
 	}
 	
 	/**
@@ -84,7 +99,9 @@ public abstract class Tile {
 	public TileSprite getSprite() {
 		return this.sprite;
 	}
-	
+	/**
+	 * @param id the id the tile should be set to
+	 */
 	public void setId(int id) {
 		this.id = id;
 	}
@@ -103,13 +120,18 @@ public abstract class Tile {
 	public int timeToFrameUpdate() {
 		return this.sprite.getAnimationSpeed() - this.elapsedTime;
 	}
-
+	
+	/**
+	 * @return the level color of the current tile
+	 */
 	public int getLevelColor() {
 		return mapColor;
 	}
 	
+	/**
+	 * @return the size of the tile (Height = Width)
+	 */
 	public int getSize() {
 		return this.size;
 	}
-
 }
