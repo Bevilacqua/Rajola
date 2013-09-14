@@ -57,35 +57,35 @@ public class TileSpriteSheet {
 		return this.tileImages;
 	}
 	
-	/*
+	/**
 	 * @return Width of the tile set in tiles
 	 */
 	public int getTileWidth() {
 		return this.tileImages.length;
 	}
 	
-	/*
+	/**
 	 * @return Height of the tile set in tiles
 	 */
 	public int getTileHeight() {
 		return this.tileImages[0].length;
 	}
 	
-	/*
+	/**
 	 * @return Width of the tile set in pixels
 	 */
 	public int getWidth() {
 		return this.getTileWidth()*this.tileSize;
 	}
 	
-	/*
+	/**
 	 * @return Width of the tile set in pixels
 	 */
 	public int getHeight() {
 		return this.getTileHeight()*this.tileSize;
 	}
 	
-	/*
+	/**
 	 * @return Image at specified index
 	 */
 	public Image getTileImage(int x, int y) {
@@ -101,13 +101,15 @@ public class TileSpriteSheet {
 		return new TileSprite(tileImages[x][y]);
 	}
 	
-	/*
+	/**
 	 * @return The tile set path
 	 */
 	public String getPath() {
 		return this.path;
 	}
-
+	/**
+	 * @return the full sprite sheet's image
+	 */
 	public Image getFullImage() {
 		return fullImage;
 	}

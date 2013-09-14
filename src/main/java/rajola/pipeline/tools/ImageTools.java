@@ -11,10 +11,11 @@ import org.newdawn.slick.util.BufferedImageUtil;
 
 import rajola.pipeline.Tile;
 
+/**
+ * @author Bevilacqua
+ *A list of tools to be used accessed in a static manor.
+ */
 public class ImageTools {
-
-	//All Tools should be referenced in a static manor
-	
 	/**
 	 * @param BufferedImage
 	 * @return Slick Image
@@ -42,8 +43,9 @@ public class ImageTools {
 		return -1; //Error
 	}
 	
-	/*
-	 * Creates a list of images to be used in creating an animated sprite
+	/**
+	 * @param imgs Slick images to be listed
+	 * @return the list of images
 	 */
 	public static List<Image> imageListCreator(Image... imgs) {
 		List<Image> images = new ArrayList<Image>();

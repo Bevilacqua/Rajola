@@ -12,12 +12,10 @@ import rajola.pipeline.tools.ImageTools;
 
 /**
  * 
- * @author Jacob Bevilacqua
- *
- *The TileLevel class provides an alternative to hardcoding tiles into a map
- *TileLevel generates a level from an image and then renders them onto the screen
+ * @author Bevilacqua
+ *The TileLevel class provides an alternative to hard-coding tiles into a map
+ *TileLevel generates a level from an image and then renders them onto the screen (1 pixel to 1 tile ratio)
  *TileLevel does not handle entity loading or entity rendering
- *
  */
 
 public class TileLevel {
@@ -77,7 +75,10 @@ private int yOffset;
 		this.screenWidth = gc.getScreenWidth();
 	}
 
-
+	/**
+	 * @param mapImagePath the path to the image of the map
+	 * Loads the image and creates an array of colors
+	 */
 	private void loadImage(String mapImagePath) {
 		try {
 			this.mapImage = new Image(mapImagePath);
@@ -98,8 +99,8 @@ private int yOffset;
 		}
 	}
 	
-	/*
-	 * Populates the tileIdMap & tileMap
+	/**
+	 * Creates an array of tiles to be rendered
 	 */
 	private void fillTile() {
 		this.tileIdMap = new int[this.pixelsOnMapImage.length];
@@ -136,6 +137,12 @@ private int yOffset;
  * 2.Render
  */
 
+	/**
+	 * @param DELTA the delta variable to be used in updating
+	 * @param xOffset how far the map should be offset on the x axis
+	 * @param yOffset how far the map should be offset on the y axis
+	 * Handles updating tiles and updating the x and y offsets
+	 */
 	public void Update(int DELTA , int xOffset , int yOffset) {
 		for(int i = 0 ; i < this.tileSet.size() ; i++ ) {
 			this.tileSet.get(i).update(DELTA);
@@ -144,6 +151,9 @@ private int yOffset;
 		this.yOffset = yOffset;
 	}
 	
+	/**
+	 * Renders the tile level onto the screen
+	 */
 	public void Render() {
 		for(int x = 0 ; x < this.mapImageWidth ; x++ ) {
 			for(int y = 0 ; y < this.mapImageHeight ; y++) {
@@ -154,24 +164,49 @@ private int yOffset;
 
 
 //All methods below are getters and setters
+	/**
+	 * @return the x offset
+	 */
 	public int getXOffset() {
 		return this.xOffset;
 	}
+	/**
+	 * @return the y offset
+	 */
 	public int getYOffset() {
 		return this.yOffset;
 	}
+	/**
+	 * @param x the x variable in pixels of the window that should be tested
+	 * @param y the y vaiable in pixels of the window that should be tested
+	 * @return the tile at the specified location on the window
+	 * Gets the tile at the location on the screen.
+	 * Used for collision detection. 
+	 */
 	public Tile getTileAt(int x , int y) {
 		return this.tileMap[( (-this.xOffset + x) >> this.shiftCount )+ ( ((-this.yOffset + y) >> this.shiftCount )  * this.mapImageWidth)];
 	}
+	/**
+	 * @return the tile array of the tile map
+	 */
 	public Tile[] getTileMap() {
 		return this.tileMap;
 	}
+	/**
+	 * @return the width of the tile level in tiles
+	 */
 	public int getWidth() {
 		return this.mapImageWidth >> this.shiftCount;
 	}
+	/**
+	 * @return the height of the tile level in tiles
+	 */
 	public int getHeight() {
 		return this.mapImageHeight >> this.shiftCount;
 	}
+	/**
+	 * @return the shift count used to convert pixels to tiles
+	 */
 	public int getShiftCount() {
 		return this.shiftCount;
 	}

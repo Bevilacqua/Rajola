@@ -146,7 +146,7 @@ public class TileSprite {
 		this.currentFrame = currentFrame;
 	}
 	
-	/*
+	/**
 	 * increase the current frame by one
 	 */
 	public void incrementFrame() {
