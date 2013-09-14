@@ -4,7 +4,7 @@
 
 This is a **work in progress**, **open source**, class library for Slick2D the Java game engine that helps you in creating 2d games and using OpenGL.
 
-**[View the documentation](https://bevilacqua.github.com/Rajola)**
+**[View the documentation](https://bevilacqua.me/rajola)**
 
 ## Introduction
 
