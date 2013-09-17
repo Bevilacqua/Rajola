@@ -15,12 +15,10 @@ import rajola.pipeline.sprites.TileSprite;
 import rajola.pipeline.tools.Renderable;
 
 /**
- * 
- * @author Frederic-Antoine Gingras
- *
  * The TileMap class holds a collection of all the tiles on the map and their positions, ids, attributes
  * It's has multiple functions to ease map creation programaticly.
  *
+ * @author Frederic-Antoine Gingras
  */
 public class TileMap implements Renderable {
 

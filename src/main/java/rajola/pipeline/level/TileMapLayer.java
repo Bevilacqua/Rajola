@@ -8,14 +8,14 @@ import rajola.pipeline.Tile;
 import rajola.pipeline.tools.Renderable;
 
 /**
- * 
- * @author Frederic-Antoine Gingras
- *
  * The TileMapLayer class represents a tile map layer of rendering this offers
  * the flexibility to overlay different TileSprite, e.g.: a background layer has
  * the "decor" and specific objects like Rocks, Chests, etc. are on an other Layer.
  * 
  * It has a name, a priority, and it's tiles
+ * 
+ * @author Frederic-Antoine Gingras
+ *
  *
  */
 public class TileMapLayer implements Renderable {

@@ -3,8 +3,8 @@ package rajola.pipeline;
 import rajola.pipeline.sprites.TileSprite;
 
 /**
+ * Sample interface to create new tiles because Tile.java is abstract.
  * @author Bevilacqua
- *Sample interface to create new tiles because Tile.java is abstract.
  */
 public class BasicTile extends Tile {
 

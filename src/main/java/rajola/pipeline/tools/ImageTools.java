@@ -12,8 +12,8 @@ import org.newdawn.slick.util.BufferedImageUtil;
 import rajola.pipeline.Tile;
 
 /**
+ * A list of tools to be used accessed in a static manor.
  * @author Bevilacqua
- *A list of tools to be used accessed in a static manor.
  */
 public class ImageTools {
 	/**

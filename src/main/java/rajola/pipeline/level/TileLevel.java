@@ -11,11 +11,10 @@ import rajola.pipeline.Tile;
 import rajola.pipeline.tools.ImageTools;
 
 /**
- * 
- * @author Bevilacqua
  *The TileLevel class provides an alternative to hard-coding tiles into a map
  *TileLevel generates a level from an image and then renders them onto the screen (1 pixel to 1 tile ratio)
  *TileLevel does not handle entity loading or entity rendering
+ * @author Bevilacqua
  */
 
 public class TileLevel {
